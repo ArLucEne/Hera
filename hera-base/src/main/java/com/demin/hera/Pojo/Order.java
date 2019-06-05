@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,8 +16,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "db_order")
-public class Order {
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
@@ -35,4 +38,17 @@ public class Order {
     private LocalDateTime updateTime;       //订单更新时间
     private LocalDateTime payTime;          //订单支付时间
     private LocalDateTime completeTime;     //订单完成时间
+
+    public static Order getTestEntity(){
+        Order test = new Order();
+        test.setAddressId(2);
+        test.setBuyerMessage("message");
+        test.setOrderPay(new BigDecimal(43.3));
+        test.setPayType(1);
+        test.setShippingCode("test");
+        test.setPostage(new BigDecimal(23.2));
+        test.setCustomerId(3);
+        test.setCreateTime(LocalDateTime.now());
+        return test;
+    }
 }

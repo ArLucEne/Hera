@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,8 +15,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "db_item_category")
-public class ItemCategory {
+public class ItemCategory implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer categoryId;
@@ -27,4 +30,14 @@ public class ItemCategory {
     private Integer parentId;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+
+    public static ItemCategory getTestEntity(){
+        ItemCategory test = new ItemCategory();
+        test.setName("testCategory");
+        test.setIsParent(1);
+        test.setImageAddr("testURl");
+        test.setCreateTime(LocalDateTime.now());
+        test.setUpdateTime(LocalDateTime.now());
+        return test;
+    }
 }

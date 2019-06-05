@@ -1,0 +1,13 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: hera-eureka
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false   #是否注册到eureka服务器
+    fetch-registry: false     #是否从eureka服务器获取注册信息
+    service-url:    #设置eureka服务器所在地址，注册服务和查询服务都依靠这个地址
+      defultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

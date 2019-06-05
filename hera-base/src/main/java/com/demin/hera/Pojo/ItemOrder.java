@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -17,8 +15,10 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "db_item_order")
-public class ItemOrder {
+public class ItemOrder implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ItemOrderId;
@@ -29,4 +29,16 @@ public class ItemOrder {
     private String itemName;
     private String itemPoint;
     private BigDecimal totalPrice;
+
+    public static ItemOrder getTestEntity(){
+        ItemOrder test = new ItemOrder();
+        test.setItemId(1);
+        test.setItemName("testItem");
+        test.setItemNum(3);
+        test.setOrderId(2);
+        test.setItemPrice(new BigDecimal(34.3));
+        test.setItemPoint("good item");
+        test.setTotalPrice(new BigDecimal(43.24));
+        return test;
+    }
 }

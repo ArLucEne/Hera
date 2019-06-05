@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -18,8 +16,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "db_item_cart")
-public class ItemCart {
+public class ItemCart implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer cartId;
@@ -29,4 +29,15 @@ public class ItemCart {
     private BigDecimal itemPrice;       //商品价格
     private LocalDateTime createTime;
     private LocalDateTime modifyTime;
+
+    public static ItemCart getTestEntity(){
+        ItemCart test = new ItemCart();
+        test.setCreateTime(LocalDateTime.now());
+        test.setCustomerId(2);
+        test.setItemNum(2);
+        test.setItemId(1);
+        test.setItemPrice(new BigDecimal(346.44));
+        test.setModifyTime(LocalDateTime.now());
+        return test;
+    }
 }

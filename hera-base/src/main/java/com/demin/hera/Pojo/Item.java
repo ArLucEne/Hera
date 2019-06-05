@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -14,8 +15,11 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "db_item")
-public class Item {
+public class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer itemId;
@@ -41,4 +45,19 @@ public class Item {
     private int saleNum;            //销量
     @Column(name = "item_sort_order")
     private int sortOrder;      //排序号码
+
+
+    public static Item getTestEntity(){
+        Item test = new Item();
+        test.setCategoryId(100);
+        test.setName("testCategory");
+        test.setItemId(100);
+        test.setPoint("testPoint");
+        test.setPrice(new BigDecimal(3.2));
+        test.setImageAddr("testUrl");
+        test.setNum(5000);
+        test.setLimitedNum(4);
+        test.setSaleNum(234);
+        return  test;
+    }
 }

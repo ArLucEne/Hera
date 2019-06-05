@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by  Domain
@@ -18,10 +17,11 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @ToString
+@Entity
 @Table(name = "db_admin")
-public class Admin {
+public class Admin implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
     private Integer adminId;
     @Column(name = "admin_name")
     private String name;
@@ -36,5 +36,19 @@ public class Admin {
 
     public void encodePwd(){
         this.password = MD5Util.encodeMD5(password);
+    }
+
+    public static Admin getTestEntity(){
+        Admin test = new Admin();
+        test.setAdminId(100);
+        test.setName("testAdmin");
+        test.setEmail("awegjoaw@qq.com");
+        test.setPassword("test");
+        test.setRole(1);
+        test.setLastLoginTime(LocalDateTime.now());
+
+        test.encodePwd();
+
+        return test;
     }
 }
