@@ -17,7 +17,7 @@ public class CustomerService {
     CustomerDao customerDao;
 
     @Cacheable(value = "customerCache")
-    public Customer findById(Integer id){
+    public Customer findById(String id){
         return customerDao.findById(id).get();
     }
 

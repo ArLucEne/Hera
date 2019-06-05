@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:49;
  */
 @Repository
-public interface ItemCategoryDao extends JpaRepository<ItemCategory,Integer> {
+public interface ItemCategoryDao extends JpaRepository<ItemCategory,String> {
 }

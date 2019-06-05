@@ -29,11 +29,11 @@ public class AddressService {
      * @return
      */
     @Cacheable(value = "addressCache")
-    public Address findById(Integer id){
+    public Address findById(String id){
         return addressDao.findById(id).get();
     }
 
-    public void deleteById(Integer id){
+    public void deleteById(String id){
         addressDao.deleteById(id);
     }
 

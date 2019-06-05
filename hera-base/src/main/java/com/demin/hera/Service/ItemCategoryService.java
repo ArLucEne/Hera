@@ -16,7 +16,7 @@ public class ItemCategoryService {
     ItemCategoryDao categoryDao;
 
     @Cacheable(value = "categoryCache")
-    public ItemCategory findById(Integer id){
+    public ItemCategory findById(String id){
         return categoryDao.findById(id).get();
     }
 

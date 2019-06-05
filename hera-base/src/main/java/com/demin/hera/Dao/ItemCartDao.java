@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:48;
  */
 @Repository
-public interface ItemCartDao extends JpaRepository<ItemCart,Integer> {
+public interface ItemCartDao extends JpaRepository<ItemCart,String> {
 }

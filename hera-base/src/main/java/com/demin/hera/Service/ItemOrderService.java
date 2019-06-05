@@ -16,7 +16,7 @@ public class ItemOrderService {
     ItemOrderDao itemOrderDao;
 
     @Cacheable(value = "itemOrderCache")
-    public ItemOrder findById(Integer id){
+    public ItemOrder findById(String id){
         return itemOrderDao.findById(id).get();
     }
 

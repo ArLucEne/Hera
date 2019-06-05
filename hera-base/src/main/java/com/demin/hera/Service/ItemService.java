@@ -17,7 +17,7 @@ public class ItemService {
     ItemDao itemDao;
 
     @Cacheable(value = "itemCache")
-    public Item findById(Integer id){
+    public Item findById(String id){
         System.out.println("findById from SQL");
         Item item = itemDao.findById(id).get();
         return item;

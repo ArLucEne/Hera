@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:46;
  */
 @Repository
-public interface AdminDao extends JpaRepository<Admin,Integer> {
+public interface AdminDao extends JpaRepository<Admin,String> {
 }

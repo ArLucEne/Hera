@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -21,12 +22,11 @@ public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer itemId;
+    private String itemId;
     @Column(name = "item_name")
     private String name;        //商品名称
     @Column(name = "item_category_id")
-    private Integer categoryId;     //所属商品种类id
+    private String categoryId;     //所属商品种类id
     @Column(name = "item_price")
     private BigDecimal price;       //价格
     @Column(name = "item_num")
@@ -47,11 +47,15 @@ public class Item implements Serializable {
     private int sortOrder;      //排序号码
 
 
+    public Item(){
+        this.itemId = UUID.randomUUID().toString().replace("-","");
+    }
+
     public static Item getTestEntity(){
         Item test = new Item();
-        test.setCategoryId(100);
+        test.setCategoryId("test");
         test.setName("testCategory");
-        test.setItemId(100);
+
         test.setPoint("testPoint");
         test.setPrice(new BigDecimal(3.2));
         test.setImageAddr("testUrl");

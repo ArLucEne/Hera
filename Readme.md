@@ -19,3 +19,10 @@
 - @CacheEvict：从缓存中移除相应数据，应用到删除数据的方法上，调用方法时会从缓存中删除对应key的数据。
 - @CachePut：方法支持缓存功能。与@Cacheable不同的是使用@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。应用到写数据的方法上，如新增/修改方法，调用方法时会自动把相应的数据放入缓存。每次执行都会执行方法，无论缓存里是否有值，同时使用新的返回值的替换缓存中的值。这里不同于@Cacheable：@Cacheable如果缓存没有值，从则执行方法并缓存数据，如果缓存有值，则从缓存中获取值
 - @CacheConfig: 类级别的注解：如果我们在此注解中定义cacheNames，则此类中的所有方法上 @Cacheable的cacheNames默认都是此值。当然@Cacheable也可以重定义cacheNames的值
+# springboot 2.0 的更改
+- redis默认lettuce，个人感觉还是jedis方便
+- redis需要加commons-pool2依赖
+- eureka依赖名改为spring-cloud-starter-netflix-eureka-server
+- jpa的hibernate数据库默认引擎不再使用innoDB
+
+- 前路漫漫，吾将上下而求索……

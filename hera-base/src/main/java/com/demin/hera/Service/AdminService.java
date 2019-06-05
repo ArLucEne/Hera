@@ -16,7 +16,7 @@ public class AdminService {
     AdminDao adminDao;
 
     @Cacheable(value = "adminCache")
-    public Admin findById(Integer id){
+    public Admin findById(String id){
         return adminDao.findById(id).get();
     }
 

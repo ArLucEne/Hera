@@ -17,7 +17,7 @@ public class TestContorller {
     @Autowired
     ItemService service;
     @RequestMapping("/test")
-    public Object test(@RequestParam Integer id){
+    public Object test(@RequestParam String id){
         return service.findById(id);
     }
 

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * 物流信息
@@ -24,9 +25,9 @@ import java.time.LocalDateTime;
 public class Shipping implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
-    private Integer shippingId;
-    private Integer orderId;
+    //@GeneratedValue
+    private String shippingId;
+    private String orderId;
     private String receiverName;
     private String receiverPhone;
     private String receiverProvince;
@@ -34,6 +35,10 @@ public class Shipping implements Serializable {
     private String receiverAddress;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+
+    public Shipping(){
+        this.shippingId = UUID.randomUUID().toString().replace("-","");
+    }
 
     public static Shipping getTestEntity(){
         Shipping test = new Shipping();

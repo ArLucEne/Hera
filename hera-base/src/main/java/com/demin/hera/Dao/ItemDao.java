@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:47;
  */
 @Repository
-public interface ItemDao extends JpaRepository<Item,Integer> {
+public interface ItemDao extends JpaRepository<Item,String> {
 }

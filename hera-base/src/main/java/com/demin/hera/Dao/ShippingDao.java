@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:50;
  */
 @Repository
-public interface ShippingDao extends JpaRepository<Shipping,Integer> {
+public interface ShippingDao extends JpaRepository<Shipping,String> {
 }

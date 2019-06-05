@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 2019/6/4 12:45;
  */
 @Repository
-public interface AddressDao extends JpaRepository<Address,Integer> {
+public interface AddressDao extends JpaRepository<Address,String> {
 }

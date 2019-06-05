@@ -37,13 +37,13 @@ public class CustomerTest extends BaseTest {
     public void baseTest(){
         Address address = Address.getTestEntity();
         addressDao.save(address);
-        Optional<Address> add = addressDao.findById(1);
+        Optional<Address> add = addressDao.findById("test");
         if(add.isPresent())
             System.out.println(add.get().toString());
         address.setCity("qingdao");
         addressDao.save(address);
 
-        System.out.println(addressDao.findById(1).toString());
+        System.out.println(addressDao.findById("test").toString());
 
         Admin admin = Admin.getTestEntity();
         adminDao.save(admin);

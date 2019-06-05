@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -19,10 +20,9 @@ import java.io.Serializable;
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer addressId;
+    private String addressId;
 
-    private Integer customerId;
+    private String customerId;
     private String customerName;
     private int isDefault;
     @Column(name = "address_province")
@@ -32,10 +32,13 @@ public class Address implements Serializable {
     private String addressDetail;
     private String phoneNum;
 
+    public Address(){
+        this.addressId = UUID.randomUUID().toString().replace("-","");
+    }
+
     public static Address getTestEntity(){
         Address test = new Address();
-        test.setAddressId(100);
-        test.setCustomerId(100);
+        test.setCustomerId("test");
         test.setCustomerName("test");
         test.setIsDefault(1);
         test.setCity("weihai");

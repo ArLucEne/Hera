@@ -16,7 +16,7 @@ public class ItemCartService {
     ItemCartDao cartDao;
 
     @Cacheable(value = "itemCartCache")
-    public ItemCart findById(Integer id){
+    public ItemCart findById(String id){
         return cartDao.findById(id).get();
     }
 

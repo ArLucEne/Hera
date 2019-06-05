@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -20,16 +21,19 @@ import java.time.LocalDateTime;
 public class ItemCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer categoryId;
+    private String categoryId;
     @Column(name = "category_name")
     private String name;
     @Column(name = "category_image_addr")
     private String imageAddr;
     private int isParent;
-    private Integer parentId;
+    private String parentId;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+
+    public ItemCategory(){
+        this.categoryId = UUID.randomUUID().toString().replace("-","");
+    }
 
     public static ItemCategory getTestEntity(){
         ItemCategory test = new ItemCategory();

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -22,7 +23,7 @@ import java.util.Date;
 public class Admin implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Integer adminId;
+    private String adminId;
     @Column(name = "admin_name")
     private String name;
     @Column(name = "admin_email")
@@ -34,13 +35,16 @@ public class Admin implements Serializable {
     @Column(name = "admin_last_login_time")
     private LocalDateTime lastLoginTime;
 
+    public Admin(){
+        this.adminId = UUID.randomUUID().toString().replace("-","");
+    }
+
     public void encodePwd(){
         this.password = MD5Util.encodeMD5(password);
     }
 
     public static Admin getTestEntity(){
         Admin test = new Admin();
-        test.setAdminId(100);
         test.setName("testAdmin");
         test.setEmail("awegjoaw@qq.com");
         test.setPassword("test");

@@ -16,7 +16,7 @@ public class ShippingService {
     ShippingDao shippingDao;
 
     @Cacheable(value = "shippingCache")
-    public Shipping findById(Integer id){
+    public Shipping findById(String id){
         return shippingDao.findById(id).get();
     }
 

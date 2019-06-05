@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -24,8 +25,7 @@ import java.time.LocalDateTime;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer customerId;
+    private String customerId;
     @Column(name = "customer_name")
     private String name;
     @Column(name = "customer_email")
@@ -44,9 +44,12 @@ public class Customer implements Serializable {
         this.password = MD5Util.encodeMD5(password);
     }
 
+    public Customer(){
+        this.customerId = UUID.randomUUID().toString().replace("-","");
+    }
+
     public static Customer getTestEntity(){
         Customer test = new Customer();
-        test.setCustomerId(100);
         test.setEmail("test@qq.com ");
         test.setName("testCustomer");
         test.setPassword("test");
