@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * Created by  Domain
@@ -21,6 +23,10 @@ public class ItemService {
         System.out.println("findById from SQL");
         Item item = itemDao.findById(id).get();
         return item;
+    }
+
+    public List<Item> getAll(){
+        return itemDao.findAll();
     }
 
     public Item save(Item item){
