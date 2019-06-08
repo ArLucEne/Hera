@@ -25,8 +25,9 @@ public class Order implements Serializable {
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private String orderId;
     private String customerId;     //订单所属用户id
+    @Column(columnDefinition = "int default 0")
     private int status;         //订单状态 0-正在处理 1-成功 2-订单取消
-    @Column(name = "order_pay_type")
+    @Column(name = "order_pay_type",columnDefinition = "int default 0")
     private int payType;        //支付方式
     private BigDecimal orderPay;    //订单金额
     private String addressId;      //订单地址id

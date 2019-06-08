@@ -32,12 +32,13 @@ public class Customer implements Serializable {
     private String email;
     @Column(name = "customer_phone")
     private String phone;
-    @Column(name = "customer_sex")
+    @Column(name = "customer_sex",columnDefinition = "int default 0")
     private int sex;            //0:boy 1：girl
     @Column(name = "customer_password")
     private String password;
     private LocalDateTime createTime;
     private LocalDateTime lastLoginTime; //上一次登陆时间
+    @Column(columnDefinition = "int default 0")
     private int state;      //后续使用
 
     public void encodePwd(){

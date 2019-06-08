@@ -26,6 +26,7 @@ public class ItemCategory implements Serializable {
     private String name;
     @Column(name = "category_image_addr")
     private String imageAddr;
+    @Column(columnDefinition = "int default 0")
     private int isParent;
     private String parentId;
     private LocalDateTime createTime;

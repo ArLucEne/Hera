@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ItemCategoryDao extends JpaRepository<ItemCategory,String> {
+    public ItemCategory findByName(String name);
 }
