@@ -30,4 +30,10 @@
 - 第一种方法：https://www.jianshu.com/p/14cd90f32d4d
 - 第二种方法: https://blog.csdn.net/qq_36952874/article/details/80986945
 
+### 整合Elasticsearch
+- springboot-data-starter封装的elasticsearch一直版本较低，如果必要可以直接使用原生elasticsearch
+- elasticsearch和jpa等spring-data项目存在冲突，详细参考https://www.cnblogs.com/shuaiqing/p/9233174.html
+- 这里解决冲突的办法，不使用jpa而是通过远程调用获得数据库数据。事实上，后续考虑其他所有服务都通过feign调用base模块开放的数据接口调用数据，而不是直接引用base模块
+- 或者。。。。可以考虑直接使用原生elasticsearch？
+- 2.0后feign依赖变为spring-cloud-starter-openfeign
 #  前路漫漫，吾将上下而求索……

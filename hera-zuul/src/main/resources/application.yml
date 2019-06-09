@@ -1,0 +1,28 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: hera-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+zuul:
+  routes:
+    admin-service:
+      path: /admin/**
+      service-id: hera-admin
+      strip-prefix: true
+    essearch-service:
+      path: /search/**
+      service-id: hera-essearch
+      strip-prefix: true
+    shop-service:
+      path: /shop/**
+      service-id: hera-shop
+      strip-prefix: true    # 转发路径不包含/shop/前缀
+
+  ignored-services: "*"     #禁用默认路由
+ribbon:
+  eureka:
+    enabled: true

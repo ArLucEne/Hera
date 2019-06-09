@@ -16,14 +16,14 @@ Accept : application/json
 Content-Type: application/json
 
 {
-  "name": "test",
+  "name": "laptop",
   "categoryId": "cde220934dfa4f0f9e8e939190bf48e2",
   "price": 99999,
   "num": 1,
   "limitedNum": 0,
   "status": 0,
-  "point": "能飞",
-  "desc": "好飞机",
+  "point": "外星人",
+  "desc": "外星人电脑",
   "deleteStatus": 0,
   "imageAddr": null,
   "saleNum": 1,

@@ -3,6 +3,8 @@ package com.demin.hera.Controller;
 import com.demin.hera.Pojo.Item;
 import com.demin.hera.Service.ItemService;
 import com.demin.hera.Utils.Response;
+import com.github.pagehelper.PageInfo;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,16 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public Response save(@RequestBody Item item){
         Item result = itemService.save(item);
 
+        amqpTemplate.convertAndSend("itemQueue",result.toString());    //向消息队列发送更新消息
+        System.out.println("sent message to queue");
         if(!result.getItemId().isEmpty())
             return Response.createBySuccess(result);
         else
@@ -34,8 +40,14 @@ public class ItemController {
 
     @RequestMapping("/getAll")
     public Response getAll(@RequestParam int pageNum,@RequestParam int pageSize){
-        List items = itemService.getAllWithPage(pageNum,pageSize);
+        PageInfo<Item> items = itemService.getAllWithPage(pageNum,pageSize);
+        amqpTemplate.convertAndSend("itemQueue","hello");    //向消息队列发送更新消息
         return Response.createBySuccess(items);
+    }
+
+    @RequestMapping("getAllItems")
+    public List<Item> getAllItems(){
+        return itemService.findAllItems();
     }
 
     @RequestMapping("/deleteById")

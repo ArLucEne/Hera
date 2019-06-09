@@ -4,6 +4,7 @@ import com.demin.hera.Dao.ItemDao;
 import com.demin.hera.Pojo.Item;
 import com.demin.hera.Utils.updateEntity;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,15 @@ public class ItemService {
         return item;
     }
 
-
-    public List<Item> getAllWithPage(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
+    public List<Item> findAllItems(){
         return itemDao.findAll();
+    }
+
+    public PageInfo<Item> getAllWithPage(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Item> items = itemDao.findAll();
+        PageInfo<Item> pageInfo = new PageInfo<>(items);
+        return pageInfo;
     }
 
     public void deleteById(String itemId){
