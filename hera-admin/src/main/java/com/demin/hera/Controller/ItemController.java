@@ -16,7 +16,7 @@ import java.util.List;
  * on 2019/6/6 8:46;
  */
 @RestController
-@CrossOrigin   //前后端分离允许跨域调用
+//@CrossOrigin   //前后端分离允许跨域调用
 @RequestMapping("/item")
 public class ItemController {
     @Autowired
@@ -53,7 +53,7 @@ public class ItemController {
     @RequestMapping("/deleteById")
     public Response deleteById(@RequestParam String itemId){
         itemService.deleteById(itemId);
-        if (itemService.findById(itemId) == null)
+        if (!itemService.existById(itemId))
             return Response.createBySuccess();
         else
             return Response.createByError();

@@ -45,22 +45,20 @@ public class essearch {
     /**
      * 从商品名称和卖点以及描述对key作模糊查询，分页返回
      * @param key
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    public Page<EsItem> queryByKey(String key, int pageNum, int pageSize){
-        Pageable pageable = PageRequest.of(pageNum, pageSize);
+    public List<EsItem> queryByKey(String key){
+
         QueryBuilder queryBuilder = QueryBuilders.boolQuery()
                 .should(QueryBuilders.matchQuery("name", key))
                 .should(QueryBuilders.matchQuery("point", key))
                 .should(QueryBuilders.matchQuery("desc", key));    //对key，name,desc三个字段查询
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        nativeSearchQueryBuilder.withQuery(queryBuilder).withPageable(pageable)
-                .withSort(SortBuilders.fieldSort("sale").order(SortOrder.DESC));    //按照sale降序返回
+        nativeSearchQueryBuilder.withQuery(queryBuilder)
+               .withSort(SortBuilders.fieldSort("saleNum").order(SortOrder.DESC));    //按照sale降序返回
         NativeSearchQuery query = nativeSearchQueryBuilder.build();     //开始查询
         LOGGER.info("DSL:{}", query.getQuery().toString());
-        return elasticsearchTemplate.queryForPage(query,EsItem.class);
+        return elasticsearchTemplate.queryForList(query,EsItem.class);
     }
 
     public List<EsItem> getAll(){

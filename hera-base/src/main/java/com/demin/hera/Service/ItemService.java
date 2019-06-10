@@ -24,8 +24,13 @@ public class ItemService {
     @Cacheable(value = "itemCache")
     public Item findById(String id){
         System.out.println("findById from SQL");
+
         Item item = itemDao.findById(id).get();
         return item;
+    }
+
+    public boolean existById(String itemId){
+        return itemDao.existsById(itemId);
     }
 
     public List<Item> findAllItems(){
@@ -44,6 +49,7 @@ public class ItemService {
     }
 
     public Item save(Item item){
+        System.out.println(item.toString());
         return itemDao.save(item);
     }
 

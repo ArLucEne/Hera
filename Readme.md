@@ -36,4 +36,7 @@
 - 这里解决冲突的办法，不使用jpa而是通过远程调用获得数据库数据。事实上，后续考虑其他所有服务都通过feign调用base模块开放的数据接口调用数据，而不是直接引用base模块
 - 或者。。。。可以考虑直接使用原生elasticsearch？
 - 2.0后feign依赖变为spring-cloud-starter-openfeign
+
+- elasticsearch启动：系统cmd cd到bin目录执行 elasticsearch ，访问 http://localhost:9200
+- rabbitmq启动: 安装插件后台运行  访问 http://localhost:15672 用户guest 密码guest查看队列消息
 #  前路漫漫，吾将上下而求索……

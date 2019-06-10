@@ -1,7 +1,9 @@
 package com.demin.hera.Contorller;
 
+import com.demin.hera.Entity.EsItem;
 import com.demin.hera.Service.essearch;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +18,7 @@ public class testController {
     essearch service;
 
     @RequestMapping("/searchTest")
-    public Object test(@RequestParam String key,int pageNum,int pageSize){
-        return service.queryByKey(key,pageNum,pageSize);
+    public Object test(@RequestParam String key){
+        return   service.queryByKey(key);
     }
 }
