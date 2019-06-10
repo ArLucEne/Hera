@@ -18,11 +18,11 @@ public class ItemServiceTest extends BaseTest {
     ItemService itemService;
     @Test
     public void save() {
-        Item test = Item.getTestEntity();
+/*        Item test = Item.getTestEntity();
         Item item = itemService.save(test);
         System.out.println(item.toString());
         test = itemService.findById("44ab78bcb63d4bb1b81e72afc2519d17");
         System.out.println(test.toString());
-        test = itemService.findById("44ab78bcb63d4bb1b81e72afc2519d17");
+        test = itemService.findById("44ab78bcb63d4bb1b81e72afc2519d17");*/
     }
 }

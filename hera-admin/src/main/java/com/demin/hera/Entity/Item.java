@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ import java.util.UUID;
 public class Item {
     private static final long serialVersionUID = 1L;
 
-    @Id
+
     private String itemId;
 
     private String name;        //商品名称

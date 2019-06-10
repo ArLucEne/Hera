@@ -1,17 +1,18 @@
 package com.demin.hera.Controller;
 
-import com.demin.hera.Pojo.ItemCategory;
+/*import com.demin.hera.Pojo.ItemCategory;
 import com.demin.hera.Service.ItemCategoryService;
 import com.demin.hera.Utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.List;*/
 
 /**
  * Created by  Domain
  * on 2019/6/7 13:53;
  */
+/*
 @RestController
 @CrossOrigin
 @RequestMapping("/category")
@@ -44,6 +45,7 @@ public class ItemCategoryController {
             return Response.createByError();
     }
 
+*/
 /*    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Response update(@RequestBody ItemCategory ItemCategory){
         ItemCategory resule = service.update(ItemCategory);
@@ -51,7 +53,8 @@ public class ItemCategoryController {
             return Response.createBySuccess(resule);
         }else
             return Response.createByError();
-    }*/
+    }*//*
+
 
     @RequestMapping("/findById")
     public Response findById(@RequestParam String categoryId){
@@ -63,3 +66,4 @@ public class ItemCategoryController {
     }
 
 }
+*/

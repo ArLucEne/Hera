@@ -1,5 +1,6 @@
 package com.demin.hera.Controller;
 
+import com.demin.hera.Base.BaseController;
 import com.demin.hera.Pojo.Order;
 import com.demin.hera.Service.OrderService;
 import com.demin.hera.Utils.Response;
@@ -12,31 +13,14 @@ import java.util.List;
  * Created by  Domain
  * on 2019/6/10 8:34;
  */
-/*
 @RestController
 @RequestMapping("/order")
-public class OrderController {
-    @Autowired
-    OrderService service;
+public class OrderController extends BaseController<Order,OrderService> {
 
-    @RequestMapping("/findAll")
-    public List<Order> findAll(){
-        return service.findAll();
+    @GetMapping("/existById")
+    public boolean existById(@RequestParam String id){
+        return super.baseService.existById(id);
     }
 
-    @RequestMapping("/findById")
-    public Order findById(@RequestParam String orderId){
-        return service.findById(orderId);
-    }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public Order save(@RequestBody Order order){
-        return service.save(order);
-    }
-
-    @RequestMapping("deleteById")
-    public void deleteById(@RequestParam String orderId) {
-        service.deleteById(orderId);
-    }
 }
-*/

@@ -10,8 +10,8 @@ import java.util.List;
  * Created by  Domain
  * on 2019/6/9 17:15;
  */
-@FeignClient(value = "hera-admin")
+@FeignClient(value = "hera-base")
 public interface ItemFeign {
-    @RequestMapping("/item/getAllItems")
+    @RequestMapping("/item/findAll")
     List<EsItem> fetchItem();
 }

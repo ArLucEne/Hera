@@ -1,5 +1,6 @@
 package com.demin.hera.Controller;
 
+/*
 import com.demin.hera.Pojo.Order;
 import com.demin.hera.Service.OrderService;
 import com.demin.hera.Utils.Response;
@@ -7,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+*/
 
 /**
  * Created by  Domain
  * on 2019/6/8 21:35;
- */
+ *//*
 @RestController
 @CrossOrigin
 @RequestMapping("/order")
@@ -51,3 +53,4 @@ public class OrderController {
             return Response.createByError();
     }
 }
+*/

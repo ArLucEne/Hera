@@ -1,9 +1,10 @@
 package com.demin.hera.Service;
 
 
+
+
+
 import com.demin.hera.Dao.ItemEsDao;
-
-
 import com.demin.hera.Entity.EsItem;
 import com.demin.hera.Feign.ItemFeign;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -30,8 +31,8 @@ import java.util.List;
  * on 2019/6/9 15:36;
  */
 @Service
-public class essearch {
-    private static final Logger LOGGER = LoggerFactory.getLogger(essearch.class);
+public class Essearch {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Essearch.class);
 
     @Autowired
     ItemFeign itemFeign;
@@ -55,7 +56,7 @@ public class essearch {
                 .should(QueryBuilders.matchQuery("desc", key));    //对key，name,desc三个字段查询
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(queryBuilder)
-               .withSort(SortBuilders.fieldSort("saleNum").order(SortOrder.DESC));    //按照sale降序返回
+               .withSort(SortBuilders.scoreSort().order(SortOrder.DESC));    //按照sale降序返回
         NativeSearchQuery query = nativeSearchQueryBuilder.build();     //开始查询
         LOGGER.info("DSL:{}", query.getQuery().toString());
         return elasticsearchTemplate.queryForList(query,EsItem.class);
@@ -71,9 +72,11 @@ public class essearch {
      * @return
      */
     public List<EsItem> syncData(){
+        LOGGER.info("Use feign to fetch all items");
         List<EsItem> items = itemFeign.fetchItem();
-        System.out.println("feign to fetch");
+        esDao.deleteAll();
         esDao.saveAll(items);
+        LOGGER.info("SYNC DATA");
         return getAll();
     }
 }

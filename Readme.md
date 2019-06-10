@@ -39,4 +39,7 @@
 
 - elasticsearch启动：系统cmd cd到bin目录执行 elasticsearch ，访问 http://localhost:9200
 - rabbitmq启动: 安装插件后台运行  访问 http://localhost:15672 用户guest 密码guest查看队列消息
+
+### 遇到的问题
+- 在主模块pom下加入公共依赖，而子模块依赖没有删除，子模块就废了。。
 #  前路漫漫，吾将上下而求索……

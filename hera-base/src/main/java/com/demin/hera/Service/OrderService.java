@@ -1,5 +1,6 @@
 package com.demin.hera.Service;
 
+import com.demin.hera.Base.BaseService;
 import com.demin.hera.Dao.OrderDao;
 import com.demin.hera.Pojo.Order;
 import com.github.pagehelper.PageHelper;
@@ -14,26 +15,8 @@ import java.util.List;
  * Created by  Domain
  * on 2019/6/4 17:06;
  */
-@Service
-public class OrderService {
-    @Autowired
-    OrderDao orderDao;
 
-    @Cacheable(value = "orderCache")
-    public Order findById(String id){
-        return orderDao.findById(id).get();
-    }
+public interface OrderService extends BaseService<Order> {
+    public boolean existById(String id);
 
-    public Order save(Order order){
-        return orderDao.save(order);
-    }
-
-    public void deleteId(String id){
-        orderDao.deleteById(id);
-    }
-
-    public List<Order> getAllWithPage(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        return orderDao.findAll();
-    }
 }

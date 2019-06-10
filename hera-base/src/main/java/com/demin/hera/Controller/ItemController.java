@@ -1,5 +1,6 @@
 package com.demin.hera.Controller;
 
+import com.demin.hera.Base.BaseController;
 import com.demin.hera.Pojo.Item;
 import com.demin.hera.Service.ItemService;
 import com.demin.hera.Utils.Response;
@@ -13,8 +14,16 @@ import java.util.List;
  * Created by  Domain
  * on 2019/6/10 8:29;
  */
-/*@RestController
-public class ItemController {
+@RestController
+@RequestMapping("/item")
+public class ItemController extends BaseController<Item,ItemService> {
+
+    @GetMapping("/existById")
+    public boolean existById(String id){
+        return super.baseService.existById(id);
+    }
+
+/*
     @Autowired
     ItemService itemService;
 
@@ -24,15 +33,15 @@ public class ItemController {
         return itemService.save(item);
     }
 
-    @RequestMapping("/getAll")
-    public Response getAll(@RequestParam int pageNum, @RequestParam int pageSize){
-        PageInfo<Item> items = itemService.getAllWithPage(pageNum,pageSize);
-        return Response.createBySuccess(items);
-    }
 
     @RequestMapping("/findAll")
     public List<Item> findAll(){
         return itemService.findAll();
+    }
+
+    @RequestMapping("/findAllWithPage")
+    public PageInfo<Item> findAllWithPage(@RequestParam int pageNum,@RequestParam int pageSize){
+        return itemService.getAllWithPage(pageNum,pageSize);
     }
 
     @RequestMapping("/deleteById")
@@ -50,4 +59,10 @@ public class ItemController {
         return   itemService.findById(itemId);
     }
 
-}*/
+    @RequestMapping("/existById")
+    public boolean existById(@RequestParam String itemId){
+        return itemService.existById(itemId);
+    }
+*/
+
+}

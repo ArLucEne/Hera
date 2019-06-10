@@ -1,5 +1,6 @@
 package com.demin.hera.Service;
 
+import com.demin.hera.Base.BaseService;
 import com.demin.hera.Dao.ItemDao;
 import com.demin.hera.Pojo.Item;
 import com.demin.hera.Utils.updateEntity;
@@ -16,8 +17,10 @@ import java.util.List;
  * Created by  Domain
  * on 2019/6/4 17:03;
  */
-@Service
-public class ItemService {
+
+public interface ItemService extends BaseService<Item> {
+    public boolean existById(String id);
+/*
     @Autowired
     ItemDao itemDao;
 
@@ -33,7 +36,7 @@ public class ItemService {
         return itemDao.existsById(itemId);
     }
 
-    public List<Item> findAllItems(){
+    public List<Item> findAll(){
         return itemDao.findAll();
     }
 
@@ -60,5 +63,6 @@ public class ItemService {
         dest.setItemId(oldId);
         return itemDao.save(dest);
     }
+*/
 
 }
