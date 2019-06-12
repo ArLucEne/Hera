@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
+ * order item关系
  * Created by  Domain
  * on 2019/6/4 11:17;
  */
@@ -24,11 +25,12 @@ public class ItemOrder implements Serializable {
     private String itemOrderId;
     private String itemId;
     private String orderId;
-    private int itemNum;
-    private BigDecimal itemPrice;
-    private String itemName;
-    private String itemPoint;
-    private BigDecimal totalPrice;
+    @Column(columnDefinition = "int default 0")
+    private int itemNum;        //商品购买数量
+    private BigDecimal itemPrice;   //单价
+    private String itemName;        //商品名称
+    private String itemPoint;       //商品卖点
+    private BigDecimal totalPrice;      //总金额
 
     public ItemOrder(){
         this.itemOrderId = UUID.randomUUID().toString().replace("-","");

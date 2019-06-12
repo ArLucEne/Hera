@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -27,6 +28,11 @@ public class Customer implements Serializable {
     @Id
     private String customerId;
     @Column(name = "customer_name")
+
+    private String address;//?
+    private Integer point;  //?
+
+    private BigDecimal balance;     //账户余额
     private String name;
     @Column(name = "customer_email")
     private String email;

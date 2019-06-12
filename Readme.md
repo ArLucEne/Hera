@@ -40,6 +40,12 @@
 - elasticsearch启动：系统cmd cd到bin目录执行 elasticsearch ，访问 http://localhost:9200
 - rabbitmq启动: 安装插件后台运行  访问 http://localhost:15672 用户guest 密码guest查看队列消息
 
+### 小技巧
+- 在base模块下用JPA，通过泛型也太舒服了吧~
+
 ### 遇到的问题
 - 在主模块pom下加入公共依赖，而子模块依赖没有删除，子模块就废了。。
+- 使用JPA实体类前要加@Entity，key前要加@Id
+- 不加@Id会报No identifier specified for entity:，并且有很多包都有@Id，必须是javax.persistence的注解
+- 不加@Entity会报 Not a managed type:
 #  前路漫漫，吾将上下而求索……

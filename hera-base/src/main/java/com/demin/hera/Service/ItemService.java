@@ -20,6 +20,8 @@ import java.util.List;
 
 public interface ItemService extends BaseService<Item> {
     public boolean existById(String id);
+
+    List<Item> findAllByCategoryId(String categoryId);
 /*
     @Autowired
     ItemDao itemDao;

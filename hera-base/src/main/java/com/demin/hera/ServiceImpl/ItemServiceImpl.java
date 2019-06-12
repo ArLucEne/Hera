@@ -6,6 +6,8 @@ import com.demin.hera.Pojo.Item;
 import com.demin.hera.Service.ItemService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by  Domain
  * on 2019/6/10 21:24;
@@ -15,5 +17,10 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemDao> implements I
     @Override
     public boolean existById(String id){
         return super.baseDao.existsById(id);
+    }
+
+    @Override
+    public List<Item> findAllByCategoryId(String categoryId) {
+        return super.baseDao.findAllByCategoryId(categoryId);
     }
 }

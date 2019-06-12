@@ -1,10 +1,9 @@
-package com.demin.hera.Pojo;
+package com.demin.hera.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,17 +16,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table(name = "db_item_cart")
 public class ItemCart implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
     private String cartId;
     private String customerId;
     private String customerName;
 
     private String itemId;     //商品id
-    @Column(columnDefinition = "int default 0")
     private int itemNum;        //商品数量
     private BigDecimal itemPrice;       //商品价格
     private String itemImage;

@@ -19,10 +19,14 @@ import java.util.List;
 public class ItemController extends BaseController<Item,ItemService> {
 
     @GetMapping("/existById")
-    public boolean existById(String id){
+    public boolean existById(@RequestParam String id){
         return super.baseService.existById(id);
     }
 
+    @GetMapping("findAllByCategoryId")
+    public List<Item> findByCategoryId(@RequestParam String categoryId){
+        return super.baseService.findAllByCategoryId(categoryId);
+    }
 /*
     @Autowired
     ItemService itemService;
