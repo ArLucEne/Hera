@@ -14,9 +14,9 @@ import java.util.List;
 @FeignClient(value = "hera-base")
 public interface PanelContentFeign {
 
-    @RequestMapping("/panelContent/findAllByItemId")
-    List<PanelContent> findAllByItemId(@RequestParam("itemId") String itemId);
+    @RequestMapping("/panelContent/findAllByProductId")
+    List<PanelContent> findAllByProductId(@RequestParam("itemId") String itemId);
 
     @RequestMapping("/panelContent/findAllByPanelId")
-    List<PanelContent> findAllByPanelId(@RequestParam("panelId") String panelId);
+    List<PanelContent> findAllByPanelId(@RequestParam("panelId") Integer panelId);
 }

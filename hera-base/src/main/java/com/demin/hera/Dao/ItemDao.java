@@ -15,6 +15,6 @@ import java.util.List;
 public interface ItemDao extends BaseDao<Item,String> {
     public Item findByName(String name);
 
-    List<Item> findAllByCategoryId(String categoryId);
+    List<Item> findAllByCId(Long cid);
 
 }

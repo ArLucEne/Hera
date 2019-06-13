@@ -20,7 +20,9 @@ public class PanelServiceImpl extends BaseServiceImpl<Panel, PanelDao> implement
     }
 
     @Override
-    public List<Panel> findAllByItemCategoryId(String categoryId) {
-        return super.baseDao.findAllByItemCategoryId(categoryId);
+    public List<Panel> findAllByItemCatId(Long categoryId) {
+        return super.baseDao.findAllByItemCatId(categoryId);
     }
+
+
 }

@@ -5,6 +5,8 @@ import com.demin.hera.Pojo.ItemCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by  Domain
  * on 2019/6/4 12:49;
@@ -12,4 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemCategoryDao extends BaseDao<ItemCategory,String> {
     public ItemCategory findByName(String name);
+
+    List<ItemCategory> findAllByParentId(Long parentId);
+
+    List<ItemCategory> findAllByRemark(String remark);
+
 }

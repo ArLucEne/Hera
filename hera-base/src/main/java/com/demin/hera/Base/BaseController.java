@@ -53,4 +53,10 @@ public class BaseController<T,D extends BaseService> {
     public void deleteById(@RequestParam String id){
         baseService.deleteById(id);
     }
+
+    @GetMapping("/existById")
+    @ApiOperation("查看id是否存在")
+    public boolean existById(@RequestParam String id){
+        return baseService.existById(id);
+    }
 }

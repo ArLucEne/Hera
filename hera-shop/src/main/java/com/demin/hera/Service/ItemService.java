@@ -28,8 +28,8 @@ public class ItemService {
         return result;
     }
 
-    public List<Item> getByCateId(String cateId,Integer limit){
-        List<Item> items = feign.findByCategoryId(cateId);
+    public List<Item> getByCateId(Long cateId,Integer limit){
+        List<Item> items = feign.findAllByCId(cateId);
         List<Item> result = new LinkedList<>();
         if (items.size()>=limit){
             for(int i = 0;i<limit;i++)
@@ -37,8 +37,15 @@ public class ItemService {
             return result;
         }else
             return items;
+    }
 
-
+    public List<Item> getByCateIds(List<Long> cateIds,Integer itemLimit){
+        List<Item> items = new LinkedList<>();
+        for(Long cateId:cateIds){
+            List<Item> itemList = getByCateId(cateId,itemLimit);
+            items.addAll(itemList);
+        }
+        return items;
     }
 
     public List<Item> findAll(){

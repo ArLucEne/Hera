@@ -50,4 +50,9 @@ public class BaseServiceImpl<T,D extends BaseDao> implements BaseService<T>{
         return (T)baseDao.save(t);
     }
 
+    @Override
+    public boolean existById(String id) {
+        return baseDao.existsById(id);
+    }
+
 }

@@ -42,16 +42,16 @@ public class PanelService {
         return panelResults;
     }
 
-    public List<Panel> getPanelByCateId(String cateId,Integer itemlimit){
-        List<Panel> panels = panelfeign.findAllByItemCategoryId(cateId);
+    public List<Panel> getPanelByCateId(Long cateId,Integer itemlimit){
+        List<Panel> panels = panelfeign.findAllByItemCatId(cateId);
         for(Panel panel:panels)
             addItemListToPanel(panel,itemlimit);
         return panels;
     }
 
-    public List<Panel> getPanelByCateIds(List<String> cateIds,Integer itemLimit){
+    public List<Panel> getPanelByCateIds(List<Long> cateIds,Integer itemLimit){
         List<Panel> panelList = new LinkedList<>();
-        for(String cateId:cateIds)
+        for(Long cateId:cateIds)
             panelList.addAll(getPanelByCateId(cateId,itemLimit));
         return panelList;
     }
@@ -61,14 +61,20 @@ public class PanelService {
         return addItemListToPanel(panel,10);
     }
 
-    public List<Panel> getPanelsByCateIds(List<String> cateIds){
+    public List<Panel> getPanelsByCateIds(List<Long> cateIds){
         return getPanelByCateIds(cateIds,10);
     }
 
     private Panel addItemListToPanel(Panel panel,Integer limit){
-        List<String> itemIds = panelContentService.getItemIdByPanelId(panel.getPanelId(),limit);
-        List<Item> items = itemService.getIdIn(itemIds);
-        panel.setItemList(items);
-        return panel;
+        try {
+            List<String> itemIds = panelContentService.getItemIdByPanelId(panel.getPanelId(),limit);
+            List<Item> items = itemService.getIdIn(itemIds);
+            panel.setItemDtoList(items);
+            return panel;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

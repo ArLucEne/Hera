@@ -22,29 +22,30 @@ import java.util.UUID;
 public class ItemOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private String itemOrderId;
+    private String id;
+
     private String itemId;
+
     private String orderId;
-    @Column(columnDefinition = "int default 0")
-    private int itemNum;        //商品购买数量
-    private BigDecimal itemPrice;   //单价
-    private String itemName;        //商品名称
-    private String itemPoint;       //商品卖点
-    private BigDecimal totalPrice;      //总金额
 
-    public ItemOrder(){
-        this.itemOrderId = UUID.randomUUID().toString().replace("-","");
-    }
+    /**
+     * 商品购买的数量
+     */
+    private Integer itemNum;
 
-    public static ItemOrder getTestEntity(){
-        ItemOrder test = new ItemOrder();
-        test.setItemId("test");
-        test.setItemName("testItem");
-        test.setItemNum(3);
-        test.setOrderId("test");
-        test.setItemPrice(new BigDecimal(34.3));
-        test.setItemPoint("good item");
-        test.setTotalPrice(new BigDecimal(43.24));
-        return test;
-    }
+    /**
+     * 商品单价
+     */
+    private BigDecimal itemPrice;
+
+    /**
+     * 商品总金额
+     */
+    private BigDecimal itemTotalPrice;
+
+    private String itemName;
+
+    private String itemImage;
+
+    private String itemSellPoint;
 }

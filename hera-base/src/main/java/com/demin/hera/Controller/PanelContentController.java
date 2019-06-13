@@ -17,13 +17,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/panelContent")
 public class PanelContentController extends BaseController<PanelContent, PanelContentService> {
-    @GetMapping("/findAllByItemId")
-    List<PanelContent> findAllByItemId(@RequestParam String itemId){
-        return super.baseService.findAllByItemId(itemId);
+    @GetMapping("/findAllByProductId")
+    List<PanelContent> findAllByProductId(String itemId){
+        return super.baseService.findAllByProductId(itemId);
     }
 
     @GetMapping("/findAllByPanelId")
-    List<PanelContent> findAllByPanelId(@RequestParam String panelId){
+    List<PanelContent> findAllByPanelId(Integer panelId){
         return super.baseService.findAllByPanelId(panelId);
     }
 }

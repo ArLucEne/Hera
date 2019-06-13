@@ -5,8 +5,8 @@ package com.demin.hera.Utils;
  * on 2019/6/8 18:43;
  */
 public enum ResponseCode {
-    SUCCESS(0,"SUCCESS"),
-    ERROR(1,"ERROR");
+    SUCCESS(200,"SUCCESS"),
+    ERROR(0,"ERROR");
 
     private final int code;
     private final String desc;

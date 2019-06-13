@@ -18,17 +18,16 @@ import java.util.List;
 @RequestMapping("/itemCart")
 public class ItemCartController extends BaseController<ItemCart, ItemCartService> {
 
-    @GetMapping("/findAllWithItemIdAndStatus")
-    public List<ItemCart> findAllWithItemIdAndStatus(@RequestParam String itemId, int status) {
-        return super.baseService.findAllWithItemIdAndStatus(itemId,status);
+    @GetMapping("/findAllByItemIdAAndItemCartStatus")
+    List<ItemCart> findAllByItemIdAAndItemCartStatus(@RequestParam String itemId,Integer status){
+        return super.baseService.findAllByItemIdAAndItemCartStatus(itemId, status);
     }
-
-    @GetMapping("/findAllByCustomerNameAndStatus")
-    List<ItemCart> findAllByCustomerNameAndStatus(@RequestParam String customerName,int status){
-        return super.baseService.findAllByCustomerNameAndStatus(customerName, status);
+    @GetMapping("/findAllByMemberNicknameAndItemCartStatus")
+    List<ItemCart> findAllByMemberNicknameAndItemCartStatus(String name,Integer status){
+        return super.baseService.findAllByMemberNicknameAndItemCartStatus(name, status);
     }
-    @GetMapping("/findAllByCustomerNameAndItemId")
-    List<ItemCart> findAllByCustomerNameAndItemId(@RequestParam String customerName,String itemId){
-        return super.baseService.findAllByCustomerNameAndItemId(customerName, itemId);
+    @GetMapping("/findAllByMemberNicknameAndItemId")
+    List<ItemCart> findAllByMemberNicknameAndItemId(String customerName,String itemId){
+        return super.baseService.findAllByMemberNicknameAndItemId(customerName, itemId);
     }
 }

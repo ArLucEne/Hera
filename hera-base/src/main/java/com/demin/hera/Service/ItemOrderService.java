@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
 
+import java.util.List;
+
 /**
  * Created by  Domain
  * on 2019/6/4 17:09;
  */
 
 public interface ItemOrderService extends BaseService<ItemOrder> {
+    List<ItemOrder> findAllByOrderId(String orderId);
 
 }

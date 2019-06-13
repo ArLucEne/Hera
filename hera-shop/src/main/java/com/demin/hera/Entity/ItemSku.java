@@ -21,8 +21,7 @@ public class ItemSku implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
-    private String itemSkuId;
+    private Long itemSkuId;
 
     private String itemId;
 
@@ -35,9 +34,8 @@ public class ItemSku implements Serializable {
 
     private BigDecimal cost;
 
-    private Integer stock;      //库存
-
-    public ItemSku(){
-        this.itemSkuId = UUID.randomUUID().toString().replace("-","");
-    }
+    /**
+     * 库存
+     */
+    private Integer stock;
 }

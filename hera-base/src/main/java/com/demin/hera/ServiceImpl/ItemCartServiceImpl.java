@@ -15,18 +15,19 @@ import java.util.List;
 @Service
 public class ItemCartServiceImpl extends BaseServiceImpl<ItemCart, ItemCartDao > implements ItemCartService {
 
+
     @Override
-    public List<ItemCart> findAllWithItemIdAndStatus(String itemId, int status) {
-        return super.baseDao.findAllByItemIdAndStatus(itemId,status);
+    public List<ItemCart> findAllByItemIdAAndItemCartStatus(String itemId, Integer status) {
+        return super.baseDao.findAllByItemIdAAndItemCartStatus(itemId, status);
     }
 
     @Override
-    public List<ItemCart> findAllByCustomerNameAndStatus(String customerName, int status) {
-        return super.baseDao.findAllByCustomerNameAndStatus(customerName,status);
+    public List<ItemCart> findAllByMemberNicknameAndItemCartStatus(String name, Integer status) {
+        return super.baseDao.findAllByMemberNicknameAndItemCartStatus(name, status);
     }
 
     @Override
-    public List<ItemCart> findAllByCustomerNameAndItemId(String customerName, String itemId) {
-        return super.baseDao.findAllByCustomerNameAndItemId(customerName,itemId);
+    public List<ItemCart> findAllByMemberNicknameAndItemId(String customerName, String itemId) {
+        return super.baseDao.findAllByMemberNicknameAndItemId(customerName, itemId);
     }
 }

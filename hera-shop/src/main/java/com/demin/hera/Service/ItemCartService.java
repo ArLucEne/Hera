@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,29 +23,29 @@ public class ItemCartService {
     ItemCartFeign feign;
 
     public boolean add(ItemCart itemCart){
-        List<ItemCart> result = feign.findAllWithItemIdAndStatus(itemCart.getItemId(),0);
+        List<ItemCart> result = feign.findAllByItemIdAAndItemCartStatus(itemCart.getItemId(),0);
         if (result.isEmpty()){      //新增某item的购物车记录
-            itemCart.setCreateTime(LocalDateTime.now());
-            itemCart.setStatus(0);
+            itemCart.setCreateDate(new Date());
+            itemCart.setItemCartStatus(0);
             return Check.isNotNull(feign.save(itemCart));
         }else {
             ItemCart cart = result.get(0);
-            itemCart.setCartId(cart.getCartId());
-            itemCart.setModifyTime(LocalDateTime.now());
-            itemCart.setItemNum(cart.getItemNum()+itemCart.getItemNum());
+            itemCart.setItemCartId(cart.getItemCartId());
+            itemCart.setModifyDate(new Date());
+            itemCart.setQuantity(cart.getQuantity()+itemCart.getQuantity());
             return Check.isNotNull(feign.save(itemCart));
         }
     }
 
     public List<ItemCart> list(String customerName){
-        return feign.findAllByCustomerNameAndStatus(customerName,0);
+        return feign.findAllByMemberNicknameAndItemCartStatus(customerName,0);
     }
 
     public boolean updateNum(String customerName,String itemId,int num){
-        List<ItemCart> result = feign.findAllByCustomerNameAndItemId(customerName,itemId);
+        List<ItemCart> result = feign.findAllByMemberNicknameAndItemId(customerName,itemId);
         ItemCart itemCart = result.get(0);
-        if(itemCart.getItemNum()!=num){
-            itemCart.setItemNum(num);
+        if(itemCart.getQuantity()!=num){
+            itemCart.setQuantity(num);
             return Check.isNotNull(feign.save(itemCart));
         }
         return false;
@@ -53,7 +54,7 @@ public class ItemCartService {
     public boolean submitOrder(String itemCartId){
         ItemCart itemCart = feign.findById(itemCartId);
         if(itemCart!=null){
-            itemCart.setStatus(1);
+            itemCart.setItemCartStatus(1);
             Check.isNotNull(feign.save(itemCart));
         }
         return false;
@@ -64,7 +65,7 @@ public class ItemCartService {
             boolean flag = true;
             for(String id:itemCartIds){
                 ItemCart temp = feign.findById(id);
-                temp.setStatus(1);      //提交为1状态，未提及为0状态
+                temp.setItemCartStatus(1);      //提交为1状态，未提及为0状态
                 flag = Check.isNotNull(feign.save(temp));
             }
             return flag;
@@ -75,18 +76,18 @@ public class ItemCartService {
     }
 
     public boolean clear(String customerName){
-        List<ItemCart> itemCarts = feign.findAllByCustomerNameAndStatus(customerName,0);
+        List<ItemCart> itemCarts = feign.findAllByMemberNicknameAndItemCartStatus(customerName,0);
         itemCarts.forEach(itemCart -> {
-            itemCart.setStatus(2);
+            itemCart.setItemCartStatus(2);
             feign.save(itemCart);
         });       //删除为2状态
         return true;
     }
 
     public boolean delete(String customerName,String itemId) {
-        List<ItemCart> itemCarts = feign.findAllByCustomerNameAndItemId(customerName, itemId);
+        List<ItemCart> itemCarts = feign.findAllByMemberNicknameAndItemId(customerName, itemId);
         ItemCart result = itemCarts.get(0);
-        result.setStatus(2);
+        result.setItemCartStatus(2);
         return Check.isNotNull(feign.save(result));
     }
 }

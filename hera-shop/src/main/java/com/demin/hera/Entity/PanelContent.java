@@ -20,22 +20,17 @@ import java.util.UUID;
 public class PanelContent implements Serializable {
     private static final long serialVersionUID = 1L;
 
-
-    private String panelContentId;
+    private Integer panelContentId;
 
     private LocalDateTime createDate;
 
-    private String panelId;
+    private Integer panelId;
 
     private String picUrl;
 
-    private String itemId;
+    private String productId;
 
     private Integer sortOrder;
 
     private LocalDateTime modifyDate;
-
-    public PanelContent(){
-        this.panelContentId = UUID.randomUUID().toString().replace("-","");
-    }
 }

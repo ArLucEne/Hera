@@ -17,11 +17,11 @@ public class PanelContentService {
     @Autowired
     PanelContentFeign feign;
 
-    public List<String> getItemIdByPanelId(String panelId,Integer limit){
+    public List<String> getItemIdByPanelId(Integer panelId,Integer limit){
         List<PanelContent> panelContentList = feign.findAllByPanelId(panelId);
         List<String> itemIds = new LinkedList<>();
         for(int i = 0;i<limit;i++){
-            itemIds.add(panelContentList.get(i).getItemId());
+            itemIds.add(panelContentList.get(i).getProductId());
         }
         return itemIds;
     }

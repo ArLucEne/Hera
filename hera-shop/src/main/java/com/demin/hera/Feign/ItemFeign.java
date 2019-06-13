@@ -37,6 +37,6 @@ public interface ItemFeign {
     @RequestMapping("/item/findAllWithPage")
     Object findAllWithPage(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize);
 
-    @RequestMapping("/item/findAllByCategoryId")
-    List<Item> findByCategoryId(@RequestParam("categoryId")String categoryId);
+    @RequestMapping("/item/findAllByCId")
+    List<Item> findAllByCId(@RequestParam("cId")Long categoryId);
 }

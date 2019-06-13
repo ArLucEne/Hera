@@ -16,4 +16,18 @@ import java.util.List;
 @RequestMapping("/category")
 public class ItemCategoryController extends BaseController<ItemCategory,ItemCategoryService> {
 
+    @GetMapping("/findAllByParentId")
+    List<ItemCategory> findAllByParentId(@RequestParam Long parentId){
+        return super.baseService.findAllByParentId(parentId);
+    }
+
+    @GetMapping("/findAllByRemark")
+    List<ItemCategory> findAllByRemark(@RequestParam String remark){
+        return super.baseService.findAllByRemark(remark);
+    }
+
+    @GetMapping("/findByName")
+    ItemCategory findByName(String name){
+        return super.baseService.findByName(name);
+    }
 }

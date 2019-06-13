@@ -19,8 +19,14 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemDao> implements I
         return super.baseDao.existsById(id);
     }
 
+
     @Override
-    public List<Item> findAllByCategoryId(String categoryId) {
-        return super.baseDao.findAllByCategoryId(categoryId);
+    public Item findByName(String name) {
+        return super.baseDao.findByName(name);
+    }
+
+    @Override
+    public List<Item> findAllByCId(Long cid) {
+        return super.baseDao.findAllByCId(cid);
     }
 }

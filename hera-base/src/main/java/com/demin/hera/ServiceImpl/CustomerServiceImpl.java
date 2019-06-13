@@ -12,4 +12,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerServiceImpl extends BaseServiceImpl<Customer, CustomerDao> implements CustomerService {
+
+    @Override
+    public Customer findByUsername(String name) {
+        return super.baseDao.findByUsername(name);
+    }
 }

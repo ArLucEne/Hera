@@ -19,7 +19,7 @@ import java.util.UUID;
 public class ItemAttributeValue implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String attributeValueId;
+    private Long attributeValueId;
 
     /**
      * 关联商品参数表
@@ -27,8 +27,4 @@ public class ItemAttributeValue implements Serializable {
     private Long attributeNameId;
 
     private String attributeValue;
-
-    public ItemAttributeValue(){
-        this.attributeValueId = UUID.randomUUID().toString().replace("-","");
-    }
 }

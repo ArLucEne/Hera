@@ -5,7 +5,12 @@ import com.demin.hera.Service.PanelService;
 import com.demin.hera.Util.Check;
 import com.demin.hera.Util.Response;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,44 +21,81 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/panel")
+@Api(value = "panelController", description = "handle panel")
 public class PanelController {
+
+    private final PanelService panelService;
+
     @Autowired
-    PanelService panelService;
-
-    @GetMapping("/getPanelByRemark")
-    public Response getPanelByRemark(@RequestParam String remark,Integer panelLimit,Integer itemLimit){
-        List<Panel> panelList = panelService.getPanelByRemark(remark, panelLimit, itemLimit);
-        if (Check.isNotNull(panelLimit))
-            return Response.createBySuccess(panelList);
-        else
-            return Response.createByError();
-    }
-    @GetMapping("/getPanelByCateId")
-    public Response getPanelByCateId(@RequestParam String cateId,Integer itemLimit){
-        List<Panel> panelList = panelService.getPanelByCateId(cateId,itemLimit);
-        if(Check.isNotNull(panelList))
-            return Response.createBySuccess(panelList);
-        else
-            return Response.createByError();
+    public PanelController(PanelService panelService) {
+        this.panelService = panelService;
     }
 
-    @GetMapping(path = "/cat/{cateId1}/{cateId2}/{itemLimit}")
+    @ApiOperation(value = "得到版块信息和对应版块的商品的信息", response = Panel.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "版块remark,目前有index版块"),
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "panelLimit", value = "版块的查询限制条数"),
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的查询限制条数"), })
+
+    @GetMapping(path = { "/re/{remark}", "/re/{remark}/{panelLimit}",
+            "/re/{remark}/{panelLimit}/{itemLimit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Response panel(@PathVariable("remark") String remark,
+                         @PathVariable(value = "panelLimit", required = false) Integer panelLimit,
+                         @PathVariable(value = "itemLimit", required = false) Integer itemLimit) {
+        try {
+            List<Panel> data = panelService.getPanelByRemark(remark, panelLimit,
+                    itemLimit);
+            return Response.createBySuccess(data);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.createByError();
+    }
+
+    @ApiOperation(value = "点击商品分类,查看商品分类下的版块(包含商品)", response = Panel.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cId", value = "商品分类id"),
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制显示的商品数量")
+
+    })
+    @GetMapping(path = { "/cat/{cId}",
+            "/cat/{cId}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Response panelWithItems(@PathVariable("cId") Long itemCatId,
+                                  @PathVariable(value = "limit", required = false) Integer limit) {
+        try {
+            List<Panel> data = panelService.getPanelByCateId(itemCatId,
+                    limit);
+            return Response.createBySuccess(data);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.createByError();
+    }
+
+    @ApiOperation(value = "获取指定分类下面的模块信息,可以指定两个分类的id", response = Panel.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId1", value = "第一个分类的id"),
+            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId2", value = "第二个分类的id"),
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "每一个版块下商品的数量"), })
+
+
+    @GetMapping(path = "/cat/{cId1}/{cId2}/{itemLimit}")
     public Response panelWithCatsAndItems(@PathVariable Integer itemLimit,
-                                         @PathVariable String cateId1, @PathVariable String cateId2) {
-        List<String> cateIds = Lists.newArrayList(cateId1, cateId2);
-        List<Panel> panelList = panelService.getPanelByCateIds(cateIds,itemLimit);
-        if (Check.isNotNull(panelList))
-            return Response.createBySuccess(panelList);
-        else
-            return Response.createByError();
+                                         @PathVariable Long cId1, @PathVariable Long cId2) {
+        List<Long> catIds = Lists.newArrayList(cId1, cId2);
+        return Response
+                .createBySuccess(panelService.getPanelByCateIds(catIds, itemLimit));
     }
 
-    @GetMapping("/getPanelById")
-    public Response getPanelById(@RequestParam String panelId){
-        Panel panel = panelService.getPanelById(panelId);
-        if (Check.isNotNull(panel))
-            return Response.createBySuccess(panel);
-        else
-            return Response.createByError();
+    @ApiOperation(value = "根据版块的id查找对应的版块信息，包含对应的商品信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "panelId", value = "版块的id") })
+    @GetMapping(path = "/{panelId}")
+    public Response panel(@PathVariable String panelId) {
+        Panel panelDto = panelService.getPanelById(panelId);
+        return Response.createBySuccess(panelDto);
     }
+
 }

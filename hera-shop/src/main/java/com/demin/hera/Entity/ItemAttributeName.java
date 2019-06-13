@@ -22,17 +22,12 @@ import java.util.UUID;
 public class ItemAttributeName implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String attributeNameId;
+    private Long attributeNameId;
 
     /**
      * 参数名称
      */
     private String title;
 
-    private String categoryId;
-
-    public ItemAttributeName(){
-        this.attributeNameId = UUID.randomUUID().toString().replace("-","");
-    }
-
+    private Long cId;
 }

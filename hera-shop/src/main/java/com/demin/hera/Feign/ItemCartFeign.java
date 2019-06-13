@@ -36,12 +36,12 @@ public interface ItemCartFeign {
     @RequestMapping("/itemCart/findAllWithPage")
     Object findAllWithPage(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize);
 
-    @RequestMapping("/itemCart/findAllWithItemIdAndStatus")
-    List<ItemCart> findAllWithItemIdAndStatus(@RequestParam("itemId")String itemId,@RequestParam("status") int status);
+    @RequestMapping("/itemCart/findAllByItemIdAAndItemCartStatus")
+    List<ItemCart> findAllByItemIdAAndItemCartStatus(@RequestParam("itemId")String itemId,@RequestParam("status") int status);
 
-    @RequestMapping("/itemCart/findAllByCustomerNameAndStatus")
-    List<ItemCart> findAllByCustomerNameAndStatus(@RequestParam("customerName") String customerName,@RequestParam("status") int status);
+    @RequestMapping("/itemCart/findAllByMemberNicknameAndItemCartStatus")
+    List<ItemCart> findAllByMemberNicknameAndItemCartStatus(@RequestParam("name") String customerName,@RequestParam("status") int status);
 
-    @RequestMapping("/itemCart/findAllByCustomerNameAndItemId")
-    List<ItemCart> findAllByCustomerNameAndItemId(@RequestParam("customerName") String customerName,@RequestParam("itemId") String itemId);
+    @RequestMapping("/itemCart/findAllByMemberNicknameAndItemId")
+    List<ItemCart> findAllByMemberNicknameAndItemId(@RequestParam("customerName") String customerName,@RequestParam("itemId") String itemId);
 }

@@ -17,4 +17,9 @@ import java.util.List;
  */
 
 public interface ItemCategoryService extends BaseService<ItemCategory> {
+    public ItemCategory findByName(String name);
+
+    List<ItemCategory> findAllByParentId(Long parentId);
+
+    List<ItemCategory> findAllByRemark(String remark);
 }

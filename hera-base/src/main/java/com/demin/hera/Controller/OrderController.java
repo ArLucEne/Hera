@@ -17,9 +17,10 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController extends BaseController<Order,OrderService> {
 
-    @GetMapping("/existById")
-    public boolean existById(@RequestParam String id){
-        return super.baseService.existById(id);
+
+    @GetMapping("/findAllByBuyerIdAndStatus")
+    List<Order> findAllByBuyerIdAndStatus(Long buyerId,Integer status){
+        return super.baseService.findAllByBuyerIdAndStatus(buyerId, status);
     }
 
 

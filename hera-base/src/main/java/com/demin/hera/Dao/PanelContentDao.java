@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Repository
 public interface PanelContentDao extends BaseDao<PanelContent,String> {
-    List<PanelContent> findAllByItemId(String itemId);
+    List<PanelContent> findAllByProductId(String itemId);
 
-    List<PanelContent> findAllByPanelId(String panelId);
+    List<PanelContent> findAllByPanelId(Integer panelId);
 }

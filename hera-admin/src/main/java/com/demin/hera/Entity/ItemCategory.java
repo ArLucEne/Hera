@@ -17,17 +17,27 @@ import java.util.UUID;
 @ToString
 public class ItemCategory implements Serializable {
     private static final long serialVersionUID = 1L;
+    private Long itemCatId;
 
-    private String categoryId;
+    private LocalDateTime createDate;
+
+    private String icon;
+
+
+    private Boolean isParent;
+
+
     private String name;
-    private String imageAddr;
-    private int isParent;
-    private String parentId;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
 
-    public ItemCategory(){
-        this.categoryId = UUID.randomUUID().toString().replace("-","");
-    }
+    private Long parentId;
+
+    private String remark;
+
+    private Integer sortOrder;
+
+    private Integer state;
+
+    private LocalDateTime modifyDate;
+
 
 }

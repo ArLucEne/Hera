@@ -10,7 +10,7 @@ import java.util.List;
  * on 2019/6/11 15:28;
  */
 public interface PanelContentService extends BaseService<PanelContent> {
-    List<PanelContent> findAllByItemId(String itemId);
+    List<PanelContent> findAllByProductId(String itemId);
 
-    List<PanelContent> findAllByPanelId(String panelId);
+    List<PanelContent> findAllByPanelId(Integer panelId);
 }

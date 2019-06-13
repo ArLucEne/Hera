@@ -18,55 +18,14 @@ import java.util.List;
 @RequestMapping("/item")
 public class ItemController extends BaseController<Item,ItemService> {
 
-    @GetMapping("/existById")
-    public boolean existById(@RequestParam String id){
-        return super.baseService.existById(id);
+    @GetMapping("/findByName")
+    public Item findByName(String name){
+        return super.baseService.findByName(name);
+    }
+    @GetMapping("/findAllByCId")
+    List<Item> findAllByCId(Long cid){
+        return super.baseService.findAllByCId(cid);
     }
 
-    @GetMapping("findAllByCategoryId")
-    public List<Item> findByCategoryId(@RequestParam String categoryId){
-        return super.baseService.findAllByCategoryId(categoryId);
-    }
-/*
-    @Autowired
-    ItemService itemService;
-
-
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public Item save(@RequestBody Item item){
-        return itemService.save(item);
-    }
-
-
-    @RequestMapping("/findAll")
-    public List<Item> findAll(){
-        return itemService.findAll();
-    }
-
-    @RequestMapping("/findAllWithPage")
-    public PageInfo<Item> findAllWithPage(@RequestParam int pageNum,@RequestParam int pageSize){
-        return itemService.getAllWithPage(pageNum,pageSize);
-    }
-
-    @RequestMapping("/deleteById")
-    public void deleteById(@RequestParam String itemId){
-        itemService.deleteById(itemId);
-    }
-
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Item update(@RequestBody Item item){
-        return  itemService.update(item);
-    }
-
-    @RequestMapping("/findById")
-    public Item findById(@RequestParam String itemId){
-        return   itemService.findById(itemId);
-    }
-
-    @RequestMapping("/existById")
-    public boolean existById(@RequestParam String itemId){
-        return itemService.existById(itemId);
-    }
-*/
 
 }

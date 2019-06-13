@@ -14,13 +14,14 @@ import java.util.List;
  */
 @Service
 public class PanelContentServiceImpl extends BaseServiceImpl<PanelContent, PanelContentDao> implements PanelContentService {
+
     @Override
-    public List<PanelContent> findAllByItemId(String itemId) {
-        return super.baseDao.findAllByItemId(itemId);
+    public List<PanelContent> findAllByProductId(String itemId) {
+        return super.baseDao.findAllByProductId(itemId);
     }
 
     @Override
-    public List<PanelContent> findAllByPanelId(String panelId) {
+    public List<PanelContent> findAllByPanelId(Integer panelId) {
         return super.baseDao.findAllByPanelId(panelId);
     }
 }

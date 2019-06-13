@@ -26,48 +26,29 @@ import java.util.UUID;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private String customerId;
-    @Column(name = "customer_name")
+    private Long memberId;
 
-    private String address;//?
-    private Integer point;  //?
+    private String address;
 
-    private BigDecimal balance;     //账户余额
-    private String name;
-    @Column(name = "customer_email")
+    private BigDecimal balance;
+
+    private LocalDateTime createDate;
+
+    private String description;
+
     private String email;
-    @Column(name = "customer_phone")
-    private String phone;
-    @Column(name = "customer_sex",columnDefinition = "int default 0")
-    private int sex;            //0:boy 1：girl
-    @Column(name = "customer_password")
+
     private String password;
-    private LocalDateTime createTime;
-    private LocalDateTime lastLoginTime; //上一次登陆时间
-    @Column(columnDefinition = "int default 0")
-    private int state;      //后续使用
 
-    public void encodePwd(){
-        this.password = MD5Util.encodeMD5(password);
-    }
+    private String phone;
 
-    public Customer(){
-        this.customerId = UUID.randomUUID().toString().replace("-","");
-    }
+    private Integer point;
 
-    public static Customer getTestEntity(){
-        Customer test = new Customer();
-        test.setEmail("test@qq.com ");
-        test.setName("testCustomer");
-        test.setPassword("test");
-        test.setPhone("922935205");
-        test.setSex(1);
-        test.setState(1);
-        test.setCreateTime(LocalDateTime.now());
-        test.setLastLoginTime(LocalDateTime.now());
+    private Boolean sex;
 
-        test.encodePwd();
+    private Integer state;
 
-        return test;
-    }
+    private LocalDateTime modifyDate;
+    private String remark;
+    private String username;
 }

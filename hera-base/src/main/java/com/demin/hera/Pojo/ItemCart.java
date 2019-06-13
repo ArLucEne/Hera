@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -22,38 +23,35 @@ import java.util.UUID;
 public class ItemCart implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private String cartId;
-    private String customerId;
-    private String customerName;
+    private Long itemCartId;
 
-    private String itemId;     //商品id
-    @Column(columnDefinition = "int default 0")
-    private int itemNum;        //商品数量
-    private BigDecimal itemPrice;       //商品价格
-    private String itemImage;
-    private String itemPoint;
-    private String itemName;
-    private String itemCategoryId;
+    private Long memberId;
+
+    private Date createDate;
+
+    private Date modifyDate;
+
+    private String remark;
+
+    private Integer itemCartStatus;
+
+    /**
+     * 数量
+     */
+    private Integer quantity;
+
+    private String itemId;
+
     private BigDecimal price;
 
-    private LocalDateTime createTime;
-    private LocalDateTime modifyTime;
-    private int status;
+    private Long itemCatId;
 
+    private String memberNickname;
 
+    private String itemImage;
 
-    public ItemCart(){
-        this.cartId = UUID.randomUUID().toString().replace("-","");
-    }
+    private String itemSellPoint;
 
-    public static ItemCart getTestEntity(){
-        ItemCart test = new ItemCart();
-        test.setCreateTime(LocalDateTime.now());
-        test.setCustomerId("test");
-        test.setItemNum(2);
-        test.setItemId("test");
-        test.setItemPrice(new BigDecimal(346.44));
-        test.setModifyTime(LocalDateTime.now());
-        return test;
-    }
+    private String itemName;
+
 }

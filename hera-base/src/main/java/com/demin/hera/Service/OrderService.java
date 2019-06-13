@@ -17,6 +17,8 @@ import java.util.List;
  */
 
 public interface OrderService extends BaseService<Order> {
-    public boolean existById(String id);
+    boolean existById(String id);
+
+    List<Order> findAllByBuyerIdAndStatus(Long buyerId,Integer status);
 
 }

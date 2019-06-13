@@ -21,4 +21,6 @@ public interface BaseService<T> {
     void deleteById(String id);
 
     T update(T entity);
+
+    boolean existById(String id);
 }

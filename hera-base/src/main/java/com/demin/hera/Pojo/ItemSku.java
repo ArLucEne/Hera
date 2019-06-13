@@ -26,7 +26,7 @@ public class ItemSku implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String itemSkuId;
+    private Long itemSkuId;
 
     private String itemId;
 
@@ -38,10 +38,9 @@ public class ItemSku implements Serializable {
     private BigDecimal price;
 
     private BigDecimal cost;
-    @Column(columnDefinition = "int default 0")
-    private Integer stock;      //库存
 
-    public ItemSku(){
-        this.itemSkuId = UUID.randomUUID().toString().replace("-","");
-    }
+    /**
+     * 库存
+     */
+    private Integer stock;
 }

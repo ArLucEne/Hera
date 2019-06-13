@@ -13,9 +13,9 @@ import java.util.List;
  */
 @Repository
 public interface ItemCartDao extends BaseDao<ItemCart,String> {
-    List<ItemCart> findAllByItemIdAndStatus(String itemId,int status);
+    List<ItemCart> findAllByItemIdAAndItemCartStatus(String itemId,Integer status);
 
-    List<ItemCart> findAllByCustomerNameAndStatus(String customerName,int status);
+    List<ItemCart> findAllByMemberNicknameAndItemCartStatus(String name,Integer status);
 
-    List<ItemCart> findAllByCustomerNameAndItemId(String customerName,String itemId);
+    List<ItemCart> findAllByMemberNicknameAndItemId(String customerName,String itemId);
 }

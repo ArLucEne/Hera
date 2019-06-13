@@ -18,35 +18,27 @@ import java.util.UUID;
 public class Item {
     private static final long serialVersionUID = 1L;
 
-
     private String itemId;
 
-    private String name;        //商品名称
+    private String name;
 
-    private String categoryId;     //所属商品种类id
+    private Long cId;
 
-    private BigDecimal price;       //价格
+    private String itemCatName;
 
-    private int num;        //商品库存
+    private String sellPoint;
 
-    private int limitedNum;     //每次限制购买数量
+    private BigDecimal price;
 
-    private int status;     //状态
+    private Integer limitNum;
 
-    private String point;       //商品卖点
+    private String image;
 
-    private String desc;        //商品描述
+    private String remark;
 
-    private int deleteStatus;       //是否已被删除
+    private String description;
 
-    private String imageAddr;        //图片地址
+    private Integer sortOrder;
 
-    private int saleNum;            //销量
-
-    private int sortOrder;      //排序号码
-
-
-    public Item(){
-        this.itemId = UUID.randomUUID().toString().replace("-","");
-    }
+    private Integer sale;
 }

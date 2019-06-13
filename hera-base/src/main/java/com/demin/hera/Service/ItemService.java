@@ -19,52 +19,8 @@ import java.util.List;
  */
 
 public interface ItemService extends BaseService<Item> {
-    public boolean existById(String id);
+    public Item findByName(String name);
 
-    List<Item> findAllByCategoryId(String categoryId);
-/*
-    @Autowired
-    ItemDao itemDao;
-
-    @Cacheable(value = "itemCache")
-    public Item findById(String id){
-        System.out.println("findById from SQL");
-
-        Item item = itemDao.findById(id).get();
-        return item;
-    }
-
-    public boolean existById(String itemId){
-        return itemDao.existsById(itemId);
-    }
-
-    public List<Item> findAll(){
-        return itemDao.findAll();
-    }
-
-    public PageInfo<Item> getAllWithPage(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Item> items = itemDao.findAll();
-        PageInfo<Item> pageInfo = new PageInfo<>(items);
-        return pageInfo;
-    }
-
-    public void deleteById(String itemId){
-        itemDao.deleteById(itemId);
-    }
-
-    public Item save(Item item){
-        System.out.println(item.toString());
-        return itemDao.save(item);
-    }
-
-    public Item update(Item item){
-        Item dest = itemDao.findByName(item.getName());
-        String oldId = dest.getItemId();
-        updateEntity.update(item,dest);
-        dest.setItemId(oldId);
-        return itemDao.save(dest);
-    }
-*/
+    List<Item> findAllByCId(Long cid);
 
 }

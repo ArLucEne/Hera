@@ -24,8 +24,8 @@ public class PanelController extends BaseController<Panel, PanelService> {
         return super.baseService.findAllByRemark(remark);
     }
 
-    @GetMapping("/findALlByCateId")
-    List<Panel> findAllByItemCategoryId(String categoryId){
-        return super.baseService.findAllByItemCategoryId(categoryId);
+    @GetMapping("/findAllByItemCatId")
+    List<Panel> findAllByItemCatId(Long categoryId){
+        return super.baseService.findAllByItemCatId(categoryId);
     }
 }

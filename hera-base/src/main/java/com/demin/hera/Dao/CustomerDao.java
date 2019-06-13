@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CustomerDao extends BaseDao<Customer,String> {
-    public Customer findByName(String name);
+    public Customer findByUsername(String name);
 }

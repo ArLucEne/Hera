@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -26,27 +27,21 @@ public class Panel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String panelId;
+    private Integer panelId;
 
-    private LocalDateTime createDate;
-    @Column(columnDefinition = "int default 0")
     private Integer limitNum;
 
     private String name;
 
     private String remark;
-    @Column(columnDefinition = "int default 0")
+
     private Integer sortOrder;
-    @Column(columnDefinition = "int default 0")
+
     private Integer status;
-    @Column(columnDefinition = "int default 0")
+
     private Integer type;
 
-    private LocalDateTime modifyDate;
+    private Long itemCatId;
 
-    private String itemCategoryId;
-
-    public Panel(){
-        this.panelId = UUID.randomUUID().toString().replace("-","");
-    }
+    private List<Item> itemDtoList;
 }

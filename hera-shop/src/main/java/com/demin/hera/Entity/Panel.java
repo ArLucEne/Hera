@@ -22,25 +22,23 @@ import java.util.UUID;
 public class Panel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String panelId;
+    private Integer panelId;
 
-    private LocalDateTime createDate;
     private Integer limitNum;
 
     private String name;
 
-    private String remark;      //版块标签
+    private String remark;
+
     private Integer sortOrder;
+
     private Integer status;
+
     private Integer type;
 
-    private LocalDateTime modifyDate;
+    private Long itemCatId;
 
-    private String itemCategoryId;
+    private List<Item> itemDtoList;
 
-    public List<Item> ItemList;
 
-    public Panel(){
-        this.panelId = UUID.randomUUID().toString().replace("-","");
-    }
 }

@@ -16,6 +16,6 @@ import java.util.List;
  */
 
 public interface CustomerService  extends BaseService<Customer> {
-
+    public Customer findByUsername(String name);
 
 }
