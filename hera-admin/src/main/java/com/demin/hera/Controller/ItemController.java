@@ -2,7 +2,9 @@ package com.demin.hera.Controller;
 
 
 import com.demin.hera.Entity.Item;
+import com.demin.hera.Entity.ItemCategory;
 import com.demin.hera.Entity.Response;
+import com.demin.hera.Feign.ItemCategoryFeign;
 import com.demin.hera.Feign.ItemFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -28,10 +32,19 @@ public class ItemController {
     ItemFeign itemService;
 
     @Autowired
+    ItemCategoryFeign feign;
+
+    @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @PostMapping(value = "/save")
     public Response save(@RequestBody Item item){
+        item.setItemId(UUID.randomUUID().toString().replaceAll("-",""));
+        String id = "11";
+        System.out.println(item);
+        ItemCategory category = feign.findById(id);
+        item.setItemCatName(category.getName());
+        item.setStatus(1);
         Item result = itemService.save(item);
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE SAVE");
         amqpTemplate.convertAndSend("itemQueue",result.toString());    //向消息队列发送更新消息
@@ -43,7 +56,7 @@ public class ItemController {
     }
 
 
-    @RequestMapping("/getAll")
+    @GetMapping("/getAll")
     public Response getAll(@RequestParam int pageNum,@RequestParam int pageSize){
         Object items = itemService.findAllWithPage(pageNum,pageSize);
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE FINDALLWITHPAGE");
@@ -51,13 +64,13 @@ public class ItemController {
     }
 
 
-    @RequestMapping("/getAllItems")
-    public List<Item> getAll(){
+    @GetMapping("/getAllItems")
+    public Response getAll(){
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE FINDALL");
-        return itemService.findAll();
+        return Response.createBySuccess(itemService.findAll());
     }
 
-    @RequestMapping("/deleteById")
+    @GetMapping("/deleteById")
     public Response deleteById(@RequestParam String itemId){
         itemService.deleteById(itemId);
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE DELETEBYID");
@@ -67,7 +80,7 @@ public class ItemController {
             return Response.createByError();
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @PostMapping(value = "/update")
     public Response update(@RequestBody Item item){
         Item resule = itemService.update(item);
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE UPDATE");
@@ -77,7 +90,7 @@ public class ItemController {
             return Response.createByError();
     }
 
-    @RequestMapping("/findById")
+    @GetMapping("/findById")
     public Response findById(@RequestParam String itemId){
         Item result = itemService.findById(itemId);
         LOGGER.info("ITEM FEIGN TO HERA-BASE USE FINDBYID");

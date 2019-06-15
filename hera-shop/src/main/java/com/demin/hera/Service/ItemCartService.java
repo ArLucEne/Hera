@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -25,6 +26,7 @@ public class ItemCartService {
     public boolean add(ItemCart itemCart){
         List<ItemCart> result = feign.findAllByItemIdAAndItemCartStatus(itemCart.getItemId(),0);
         if (result.isEmpty()){      //新增某item的购物车记录
+            itemCart.setItemCartId(UUID.randomUUID().toString().replaceAll("-",""));
             itemCart.setCreateDate(new Date());
             itemCart.setItemCartStatus(0);
             return Check.isNotNull(feign.save(itemCart));
@@ -32,6 +34,7 @@ public class ItemCartService {
             ItemCart cart = result.get(0);
             itemCart.setItemCartId(cart.getItemCartId());
             itemCart.setModifyDate(new Date());
+            itemCart.setItemCartStatus(0);
             itemCart.setQuantity(cart.getQuantity()+itemCart.getQuantity());
             return Check.isNotNull(feign.save(itemCart));
         }
@@ -84,8 +87,8 @@ public class ItemCartService {
         return true;
     }
 
-    public boolean delete(String customerName,String itemId) {
-        List<ItemCart> itemCarts = feign.findAllByMemberNicknameAndItemId(customerName, itemId);
+    public boolean delete(String customerName,String itemCartId) {
+        List<ItemCart> itemCarts = feign.findAllByMemberNicknameAndItemId(customerName, itemCartId);
         ItemCart result = itemCarts.get(0);
         result.setItemCartStatus(2);
         return Check.isNotNull(feign.save(result));

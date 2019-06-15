@@ -12,5 +12,5 @@ import java.util.List;
 public interface PanelContentService extends BaseService<PanelContent> {
     List<PanelContent> findAllByProductId(String itemId);
 
-    List<PanelContent> findAllByPanelId(Integer panelId);
+    List<PanelContent> findAllByPanelId(String panelId);
 }

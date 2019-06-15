@@ -20,7 +20,7 @@ import java.util.UUID;
 public class PanelContent implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer panelContentId;
+    private String panelContentId;
 
     private LocalDateTime createDate;
 

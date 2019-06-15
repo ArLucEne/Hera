@@ -19,7 +19,7 @@ public class OrderController extends BaseController<Order,OrderService> {
 
 
     @GetMapping("/findAllByBuyerIdAndStatus")
-    List<Order> findAllByBuyerIdAndStatus(Long buyerId,Integer status){
+    List<Order> findAllByBuyerIdAndStatus(String buyerId,Integer status){
         return super.baseService.findAllByBuyerIdAndStatus(buyerId, status);
     }
 

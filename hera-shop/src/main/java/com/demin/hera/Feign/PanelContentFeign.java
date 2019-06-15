@@ -18,5 +18,5 @@ public interface PanelContentFeign {
     List<PanelContent> findAllByProductId(@RequestParam("itemId") String itemId);
 
     @RequestMapping("/panelContent/findAllByPanelId")
-    List<PanelContent> findAllByPanelId(@RequestParam("panelId") Integer panelId);
+    List<PanelContent> findAllByPanelId(@RequestParam("panelId") String panelId);
 }

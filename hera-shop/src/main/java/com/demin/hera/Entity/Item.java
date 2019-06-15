@@ -24,7 +24,8 @@ public class Item implements Serializable {
 
     private String name;
 
-    private Long cId;
+    private String cId;
+
 
     private String itemCatName;
 

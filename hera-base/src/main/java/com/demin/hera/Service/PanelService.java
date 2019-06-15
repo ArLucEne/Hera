@@ -12,5 +12,5 @@ import java.util.List;
 public interface PanelService extends BaseService<Panel> {
     List<Panel> findAllByRemark(String remark);
 
-    List<Panel> findAllByItemCatId(Long categoryId);
+    List<Panel> findAllByItemCatId(String categoryId);
 }

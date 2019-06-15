@@ -8,10 +8,7 @@ import lombok.ToString;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -28,12 +25,13 @@ public class ItemAttributeName implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Long attributeNameId;
+
+    private String attributeNameId;
 
     /**
      * 参数名称
      */
     private String title;
 
-    private Long cId;
+    private String cId;
 }

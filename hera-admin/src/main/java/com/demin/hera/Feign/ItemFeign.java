@@ -1,8 +1,6 @@
 package com.demin.hera.Feign;
 
 import com.demin.hera.Entity.Item;
-
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,20 +11,16 @@ import java.util.List;
 
 /**
  * Created by  Domain
- * on 2019/6/10 8:59;
+ * on 2019/6/11 19:52;
  */
 @FeignClient(value = "hera-base")
 public interface ItemFeign {
-    /**
-     * @RequestParam中的参数必须填写，否则报错！！
-     * @param itemId
-     * @return
-     */
+
     @RequestMapping("/item/findById")
     Item findById(@RequestParam("id") String itemId);
 
     @RequestMapping("/item/findAll")
-     List<Item> findAll();
+    List<Item> findAll();
 
     @RequestMapping("/item/deleteById")
     void deleteById(@RequestParam("id") String itemId);
@@ -41,5 +35,10 @@ public interface ItemFeign {
     Item update(@RequestBody Item item);
 
     @RequestMapping("/item/findAllWithPage")
-    Object findAllWithPage(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize);
+    List<Item> findAllWithPage(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize);
+
+    @RequestMapping("/item/findAllByCId")
+    List<Item> findAllByCId(@RequestParam("cId") String categoryId);
+
+
 }

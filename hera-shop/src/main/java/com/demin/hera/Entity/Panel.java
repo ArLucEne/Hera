@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Panel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer panelId;
+    private String panelId;
 
     private Integer limitNum;
 
@@ -36,7 +36,7 @@ public class Panel implements Serializable {
 
     private Integer type;
 
-    private Long itemCatId;
+    private String itemCatId;
 
     private List<Item> itemDtoList;
 

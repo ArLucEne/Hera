@@ -13,5 +13,5 @@ import java.util.List;
  */
 @Repository
 public interface OrderDao extends BaseDao<Order,String> {
-    List<Order> findAllByBuyerIdAndStatus(Long buyerId,Integer status);
+    List<Order> findAllByBuyerIdAndStatus(String buyerId,Integer status);
 }

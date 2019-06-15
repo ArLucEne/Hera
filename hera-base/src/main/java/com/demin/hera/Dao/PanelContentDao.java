@@ -14,5 +14,5 @@ import java.util.List;
 public interface PanelContentDao extends BaseDao<PanelContent,String> {
     List<PanelContent> findAllByProductId(String itemId);
 
-    List<PanelContent> findAllByPanelId(Integer panelId);
+    List<PanelContent> findAllByPanelId(String panelId);
 }

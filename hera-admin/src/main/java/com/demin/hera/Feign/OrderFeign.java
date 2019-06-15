@@ -34,7 +34,7 @@ public interface OrderFeign {
     Order update(@RequestBody Order order);
 
     @RequestMapping("/order/findAllWithPage")
-    Object findAllWithPage(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize);
+    Object findAllWithPage(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize);
 
     @RequestMapping("/order/findAllByBuyerIdAndStatus")
     List<Order> findAllByBuyerIdAndStatus(@RequestParam("buyerId") String buyerId, @RequestParam("status") Integer status);

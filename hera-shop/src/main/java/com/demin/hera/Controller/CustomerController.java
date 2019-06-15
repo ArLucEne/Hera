@@ -42,7 +42,7 @@ public class CustomerController {
     @PatchMapping("/pay/{memberId}/{payment}")
     @ApiOperation(value = "扣除指定用户相关金额")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "customerId"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "customerId"),
             @ApiImplicitParam(paramType = "update", dataType = "BigDecimal",
                     name = "payment") })
     Response pay(@PathVariable String customerId, @PathVariable BigDecimal payment) {

@@ -21,7 +21,8 @@ import java.util.UUID;
 public class ItemCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long itemCatId;
+
+    private String itemCatId;
 
     private LocalDateTime createDate;
 
@@ -33,7 +34,7 @@ public class ItemCategory implements Serializable {
 
     private String name;
 
-    private Long parentId;
+    private String parentId;
 
     private String remark;
 

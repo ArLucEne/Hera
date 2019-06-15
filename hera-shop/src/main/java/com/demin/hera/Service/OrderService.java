@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by  Domain
@@ -25,7 +26,7 @@ public class OrderService {
     @Autowired
     ItemOrderFeign itemOrderFeign;
 
-    public List<Order> getByBuyerId(Long buyerId,Integer status){
+    public List<Order> getByBuyerId(String buyerId,Integer status){
         List<Order> orders = orderFeign.findAllByBuyerIdAndStatus(buyerId, status);
         for(Order order:orders){
             List<ItemOrder> itemOrders = itemOrderFeign.findAllByOrderId(order.getOrderId());
@@ -40,6 +41,7 @@ public class OrderService {
 
         List<ItemOrder> itemOrderList = order.getItemOrderList();
         for (ItemOrder itemOrder:itemOrderList) {
+            itemOrder.setId(UUID.randomUUID().toString().replaceAll("-",""));
             itemOrder.setOrderId(order.getOrderId());
             itemOrderFeign.save(itemOrder);
         }

@@ -14,7 +14,7 @@ import java.util.List;
 @FeignClient(value = "hera-base")
 public interface ItemCategoryFeign {
     @RequestMapping("/category/findAllByParentId")
-    List<ItemCategory> findAllByParentId(@RequestParam("parentId") Long parentId);
+    List<ItemCategory> findAllByParentId(@RequestParam("parentId") String parentId);
 
     @RequestMapping("/category/findAllByRemark")
     List<ItemCategory> findAllByRemark(@RequestParam("remark") String remark);

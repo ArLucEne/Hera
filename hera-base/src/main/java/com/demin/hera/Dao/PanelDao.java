@@ -14,7 +14,7 @@ import java.util.List;
 public interface PanelDao extends BaseDao<Panel,String> {
     List<Panel> findAllByRemark(String remark);
 
-    List<Panel> findAllByItemCatId(Long categoryId);
+    List<Panel> findAllByItemCatId(String categoryId);
 
 
 }

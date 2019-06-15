@@ -61,7 +61,7 @@ public class PanelController {
     })
     @GetMapping(path = { "/cat/{cId}",
             "/cat/{cId}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Response panelWithItems(@PathVariable("cId") Long itemCatId,
+    public Response panelWithItems(@PathVariable("cId") String itemCatId,
                                   @PathVariable(value = "limit", required = false) Integer limit) {
         try {
             List<Panel> data = panelService.getPanelByCateId(itemCatId,
@@ -76,15 +76,15 @@ public class PanelController {
 
     @ApiOperation(value = "获取指定分类下面的模块信息,可以指定两个分类的id", response = Panel.class)
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId1", value = "第一个分类的id"),
-            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId2", value = "第二个分类的id"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cId1", value = "第一个分类的id"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cId2", value = "第二个分类的id"),
             @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "每一个版块下商品的数量"), })
 
 
     @GetMapping(path = "/cat/{cId1}/{cId2}/{itemLimit}")
     public Response panelWithCatsAndItems(@PathVariable Integer itemLimit,
-                                         @PathVariable Long cId1, @PathVariable Long cId2) {
-        List<Long> catIds = Lists.newArrayList(cId1, cId2);
+                                         @PathVariable String cId1, @PathVariable String cId2) {
+        List<String> catIds = Lists.newArrayList(cId1, cId2);
         return Response
                 .createBySuccess(panelService.getPanelByCateIds(catIds, itemLimit));
     }

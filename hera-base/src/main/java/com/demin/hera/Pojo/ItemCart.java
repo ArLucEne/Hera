@@ -23,9 +23,10 @@ import java.util.UUID;
 public class ItemCart implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long itemCartId;
 
-    private Long memberId;
+    private String itemCartId;
+
+    private String memberId;
 
     private Date createDate;
 
@@ -44,7 +45,7 @@ public class ItemCart implements Serializable {
 
     private BigDecimal price;
 
-    private Long itemCatId;
+    private String itemCatId;
 
     private String memberNickname;
 

@@ -5,10 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,7 +24,8 @@ public class Panel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Integer panelId;
+
+    private String panelId;
 
     private Integer limitNum;
 
@@ -41,7 +39,8 @@ public class Panel implements Serializable {
 
     private Integer type;
 
-    private Long itemCatId;
+    private String itemCatId;
 
+    @Transient
     private List<Item> itemDtoList;
 }

@@ -66,7 +66,7 @@ public class ItemController {
 
     @ApiOperation(value = "get list of items by cId", response = Item.class)
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId",
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cId",
                     value = "商品分类的id", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "blob",
                     value = "0代表不包含大字段信息,1表示包含大字段信息", required = true),
@@ -74,7 +74,7 @@ public class ItemController {
                     value = "限制查询的条数") })
     @GetMapping(path = { "/c/{cId}/{blob}", "/c/{cId}/{blob}/{limit}" },
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Response items(@PathVariable("cId") Long cId, @PathVariable("blob") int blob,
+    public Response items(@PathVariable("cId") String cId, @PathVariable("blob") int blob,
                          @PathVariable(value = "limit", required = false) Integer limit) {
         try {
             List<Item> data = itemService.getByCateId(cId, limit);

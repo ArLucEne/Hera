@@ -20,7 +20,8 @@ import java.util.UUID;
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long addressId;
+
+    private String addressId;
 
     private Integer isDefault;
 
@@ -28,7 +29,7 @@ public class Address implements Serializable {
 
     private String tel;
 
-    private Long userId;
+    private String userId;
 
     private String userName;
 

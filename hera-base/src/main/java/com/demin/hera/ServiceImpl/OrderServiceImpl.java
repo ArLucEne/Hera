@@ -20,7 +20,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, OrderDao> implement
     }
 
     @Override
-    public List<Order> findAllByBuyerIdAndStatus(Long buyerId, Integer status) {
+    public List<Order> findAllByBuyerIdAndStatus(String buyerId, Integer status) {
         return super.baseDao.findAllByBuyerIdAndStatus(buyerId, status);
     }
 

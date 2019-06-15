@@ -40,5 +40,5 @@ public interface PanelFeign {
     List<Panel> findAllByRemark(@RequestParam("remark") String remark);
 
     @RequestMapping("/panel/findAllByItemCatId")
-    List<Panel> findAllByItemCatId(@RequestParam("categoryId") Long categoryId);
+    List<Panel> findAllByItemCatId(@RequestParam("categoryId") String categoryId);
 }

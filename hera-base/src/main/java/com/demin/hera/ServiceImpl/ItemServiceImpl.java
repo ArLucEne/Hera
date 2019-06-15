@@ -26,7 +26,7 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemDao> implements I
     }
 
     @Override
-    public List<Item> findAllByCId(Long cid) {
+    public List<Item> findAllByCId(String cid) {
         return super.baseDao.findAllByCId(cid);
     }
 }

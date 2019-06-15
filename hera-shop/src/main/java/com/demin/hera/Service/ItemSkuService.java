@@ -29,10 +29,10 @@ public class ItemSkuService {
             ItemAttribute itemAttribute = new ItemAttribute();
             String attributeStr = sku.getAttributes();
             List<String> attributesList = Lists.newArrayList(attributeStr.split(";"));
-            List<Map<Long, Long>> list = attributesList.stream().map(attribute -> {
-                Map<Long, Long> map = new HashMap<>();
+            List<Map<String, String>> list = attributesList.stream().map(attribute -> {
+                Map<String, String> map = new HashMap<>();
                 String[] properties = attribute.split(":");
-                map.put(Long.valueOf(properties[0]), Long.valueOf(properties[1]));
+                map.put(String.valueOf(properties[0]), String.valueOf(properties[1]));
                 return map;
             }).collect(Collectors.toList());
             itemAttribute.setAttributes(list);

@@ -93,9 +93,9 @@ public class ItemCartController {
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称"),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "itemId", value = "商品的id") })
-    @DeleteMapping(path = "/{nickName}/{itemId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Response delete(@PathVariable String nickName, @PathVariable String itemId) {
-        if (itemCartService.delete(nickName, itemId)) {
+    @DeleteMapping(path = "/{nickName}/{itemCartId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Response delete(@PathVariable String nickName, @PathVariable String itemCartId) {
+        if (itemCartService.delete(nickName, itemCartId)) {
             return Response.createBySuccess();
         }
         else {
@@ -104,7 +104,7 @@ public class ItemCartController {
     }
 
     @ApiOperation(value = "更新购物车中多种商品状态信息为订单状态")
-    @ApiImplicitParam(paramType = "update", dataType = "List<Long>", name = "itemCartIds", value = "购物车条目的ids")
+    @ApiImplicitParam(paramType = "update", dataType = "List<String>", name = "itemCartIds", value = "购物车条目的ids")
     @PatchMapping(path = "")
     public Response submitOrder(@RequestBody List<String> itemCartIds) {
         if (itemCartService.submitOrder(itemCartIds)) {

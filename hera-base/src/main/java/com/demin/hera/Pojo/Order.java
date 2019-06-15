@@ -67,7 +67,7 @@ public class  Order implements Serializable {
     /**
      * 买家id
      */
-    private Long buyerId;
+    private String buyerId;
 
     /**
      * 买家留言
@@ -76,7 +76,7 @@ public class  Order implements Serializable {
 
     private String buyerNick;
 
-    private Long sellerId;
+    private String sellerId;
 
     private String sellerNick;
 
@@ -84,6 +84,7 @@ public class  Order implements Serializable {
 
     private String address;
 
+    @Transient
     private List<ItemOrder> itemOrderList;
 
 

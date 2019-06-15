@@ -23,7 +23,7 @@ public class ItemController extends BaseController<Item,ItemService> {
         return super.baseService.findByName(name);
     }
     @GetMapping("/findAllByCId")
-    List<Item> findAllByCId(Long cid){
+    List<Item> findAllByCId(String cid){
         return super.baseService.findAllByCId(cid);
     }
 

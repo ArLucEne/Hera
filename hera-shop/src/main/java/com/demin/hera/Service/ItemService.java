@@ -28,7 +28,7 @@ public class ItemService {
         return result;
     }
 
-    public List<Item> getByCateId(Long cateId,Integer limit){
+    public List<Item> getByCateId(String cateId,Integer limit){
         List<Item> items = feign.findAllByCId(cateId);
         List<Item> result = new LinkedList<>();
         if (items.size()>=limit){
@@ -39,9 +39,9 @@ public class ItemService {
             return items;
     }
 
-    public List<Item> getByCateIds(List<Long> cateIds,Integer itemLimit){
+    public List<Item> getByCateIds(List<String> cateIds,Integer itemLimit){
         List<Item> items = new LinkedList<>();
-        for(Long cateId:cateIds){
+        for(String cateId:cateIds){
             List<Item> itemList = getByCateId(cateId,itemLimit);
             items.addAll(itemList);
         }

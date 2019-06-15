@@ -1,56 +1,68 @@
 package com.demin.hera.Controller;
 
-/*
-import com.demin.hera.Pojo.Order;
-import com.demin.hera.Service.OrderService;
-import com.demin.hera.Utils.Response;
+import com.demin.hera.Entity.ItemOrder;
+import com.demin.hera.Entity.Order;
+import com.demin.hera.Entity.Order;
+import com.demin.hera.Entity.Response;
+import com.demin.hera.Feign.ItemOrderFeign;
+import com.demin.hera.Feign.OrderFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-*/
 
 /**
  * Created by  Domain
- * on 2019/6/8 21:35;
- *//*
+ * on 2019/6/14 8:52;
+ */
 @RestController
-@CrossOrigin
 @RequestMapping("/order")
 public class OrderController {
+
     @Autowired
-    OrderService service;
+    OrderFeign feign;
 
-    @RequestMapping("/getAll")
-    public Response getAll(@RequestParam int pageNum,@RequestParam int pageSize){
-        List orderList = service.getAllWithPage(pageNum,pageSize);
-        if(orderList.isEmpty())
-            return Response.createByError();
-        else
-            return Response.createBySuccess(orderList);
+    @Autowired
+    ItemOrderFeign itemOrderFeign;
+
+    @GetMapping("/findById")
+    Response findById(@RequestParam String orderId){
+        return Response.createBySuccess(feign.findById(orderId));
     }
 
-    @RequestMapping("/findById")
-    public Response findById(@RequestParam String orderId){
-        Order result = service.findById(orderId);
-        if(result != null)
-            return Response.createBySuccess(result);
-        else
-            return Response.createByError();
+    @GetMapping("/findAll")
+    Response findAll(){
+        List<Order> orderList = feign.findAll();
+        for(Order order: orderList){
+                List<ItemOrder> itemOrders = itemOrderFeign.findAllByOrderId(order.getOrderId());
+                order.setItemOrderList(itemOrders);
+        }
+        return Response.createBySuccess(orderList);
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public Response save(@RequestBody Order order){
-        return Response.createBySuccess(service.save(order));
+    @GetMapping("/deleteById")
+    Response deleteById(@RequestParam String orderId){
+        feign.deleteById(orderId);
+        return Response.createBySuccess();
     }
 
-    @RequestMapping("deleteById")
-    public Response deleteById(@RequestParam String orderId){
-        service.deleteId(orderId);
-        if(service.findById(orderId) == null)
-            return Response.createBySuccess();
-        else
-            return Response.createByError();
+    @PostMapping(value = "/save")
+    Response save(@RequestBody Order order){
+        return Response.createBySuccess(feign.save(order));
+    }
+
+    @GetMapping("/existById")
+    Response existById(@RequestParam String orderId){
+        return Response.createBySuccess(feign.existById(orderId));
+    }
+
+    @PostMapping("/update")
+    Response update(@RequestBody Order order){
+        return Response.createBySuccess(feign.update(order));
+    }
+
+    @GetMapping("/findAllWithPage")
+    Response findAllWithPage(@RequestParam int pageNum, @RequestParam int pageSize){
+        return Response.createBySuccess(feign.findAllWithPage(pageNum,pageSize));
     }
 }
-*/

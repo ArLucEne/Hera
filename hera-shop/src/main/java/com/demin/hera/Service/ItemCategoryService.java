@@ -38,7 +38,7 @@ public class ItemCategoryService {
             categories=results;
 
         for(ItemCategory category:categories){
-            List<Long> childrenId = getChildCateIds(category.getItemCatId());
+            List<String> childrenId = getChildCateIds(category.getItemCatId());
             List<Item> items = itemService.getByCateIds(childrenId,itemLimit);
             category.setItems(items);
         }
@@ -46,9 +46,9 @@ public class ItemCategoryService {
 
     }
 
-    public List<Long> getChildCateIds(Long parentId){
+    public List<String> getChildCateIds(String parentId){
         List<ItemCategory> children = feign.findAllByParentId(parentId);
-        List<Long> childrenIds = new LinkedList<>();
+        List<String> childrenIds = new LinkedList<>();
         for(ItemCategory category:children)
             childrenIds.add(category.getItemCatId());
         childrenIds.add(parentId);

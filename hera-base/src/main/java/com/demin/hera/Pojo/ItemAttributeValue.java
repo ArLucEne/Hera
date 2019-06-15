@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -25,12 +22,13 @@ public class ItemAttributeValue implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Long attributeValueId;
+
+    private String attributeValueId;
 
     /**
      * 关联商品参数表
      */
-    private Long attributeNameId;
+    private String attributeNameId;
 
     private String attributeValue;
 }

@@ -21,7 +21,7 @@ public class PanelContentServiceImpl extends BaseServiceImpl<PanelContent, Panel
     }
 
     @Override
-    public List<PanelContent> findAllByPanelId(Integer panelId) {
+    public List<PanelContent> findAllByPanelId(String panelId) {
         return super.baseDao.findAllByPanelId(panelId);
     }
 }

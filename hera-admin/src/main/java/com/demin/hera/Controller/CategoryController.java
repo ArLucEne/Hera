@@ -1,12 +1,14 @@
 package com.demin.hera.Controller;
 
+import com.demin.hera.Entity.ItemCategory;
 import com.demin.hera.Entity.Response;
-import com.demin.hera.Feign.CategoryFeign;
+import com.demin.hera.Feign.ItemCategoryFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by  Domain
@@ -15,15 +17,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
-
-    public static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
-
     @Autowired
-    CategoryFeign categoryFeign;
+    ItemCategoryFeign feign;
 
-    @RequestMapping("/findAll")
-    public Response findAll(){
-        LOGGER.info("CATEGORY FEIGN TO HERA-BASE USE FINDALL");
-        return Response.createBySuccess(categoryFeign.findAll());
+    @GetMapping("/findById")
+    Response findById(@RequestParam String categoryId){
+        return Response.createBySuccess(feign.findById(categoryId));
+    }
+
+    @GetMapping("/findAll")
+    Response findAll(){
+        return Response.createBySuccess(feign.findAll());
+    }
+
+    @GetMapping("/deleteById")
+    Response deleteById(@RequestParam String categoryId){
+        feign.deleteById(categoryId);
+        return Response.createBySuccess();
+    }
+
+    @PostMapping(value = "/save")
+    Response save(@RequestBody ItemCategory category){
+        return Response.createBySuccess(feign.save(category));
+    }
+
+    @GetMapping("/existById")
+    Response existById(@RequestParam String categoryId){
+        return Response.createBySuccess(feign.existById(categoryId));
+    }
+
+    @PostMapping("/update")
+    Response update(@RequestBody ItemCategory category){
+        return Response.createBySuccess(feign.update(category));
+    }
+
+    @GetMapping("/findAllWithPage")
+    Response findAllWithPage(@RequestParam int pageNum, @RequestParam int pageSize){
+        return Response.createBySuccess(feign.findAllWithPage(pageNum,pageSize));
     }
 }

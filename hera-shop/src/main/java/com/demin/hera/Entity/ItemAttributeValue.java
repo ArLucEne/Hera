@@ -19,12 +19,12 @@ import java.util.UUID;
 public class ItemAttributeValue implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long attributeValueId;
+    private String attributeValueId;
 
     /**
      * 关联商品参数表
      */
-    private Long attributeNameId;
+    private String attributeNameId;
 
     private String attributeValue;
 }

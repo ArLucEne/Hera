@@ -7,6 +7,7 @@ package com.demin.hera.Service;
 import com.demin.hera.Dao.ItemEsDao;
 import com.demin.hera.Entity.EsItem;
 import com.demin.hera.Feign.ItemFeign;
+import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -23,6 +24,8 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,8 +55,8 @@ public class Essearch {
 
         QueryBuilder queryBuilder = QueryBuilders.boolQuery()
                 .should(QueryBuilders.matchQuery("name", key))
-                .should(QueryBuilders.matchQuery("point", key))
-                .should(QueryBuilders.matchQuery("desc", key));    //对key，name,desc三个字段查询
+                .should(QueryBuilders.matchQuery("sellPoint", key))
+                .should(QueryBuilders.matchQuery("description", key));    //对key，name,desc三个字段查询
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(queryBuilder)
                .withSort(SortBuilders.scoreSort().order(SortOrder.DESC));    //按照sale降序返回
@@ -65,6 +68,32 @@ public class Essearch {
     public List<EsItem> getAll(){
         SearchQuery searchQuery = new NativeSearchQueryBuilder().build();
         return elasticsearchTemplate.queryForList(searchQuery,EsItem.class);
+    }
+
+
+
+    public List<EsItem> recommend(List<String> itemIds) {
+        List<String> categoryNameList = new LinkedList<String>();
+        if (itemIds.size() != 0) {
+            List<EsItem> esItems = new LinkedList<>();
+
+            for(String itemId:itemIds){
+                EsItem item = itemFeign.findById(itemId);
+                esItems.add(item);
+                categoryNameList.add(item.getItemCatName());
+            }
+        }
+        String[] itemCatNames = new String[categoryNameList.size()];
+        String[] temp = categoryNameList.toArray(itemCatNames);
+        MoreLikeThisQueryBuilder moreLikeThisQueryBuilder = QueryBuilders
+                .moreLikeThisQuery(new String[] { "itemCatName" }, temp,null)
+                .minTermFreq(1);
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder)
+
+                .withSort(SortBuilders.scoreSort().order(SortOrder.DESC));
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        return elasticsearchTemplate.queryForList(query, EsItem.class);
     }
 
     /**

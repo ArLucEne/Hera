@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 8391494979684624720L;
 
-    private Long memberId;
+    private String memberId;
 
     private String address;
 

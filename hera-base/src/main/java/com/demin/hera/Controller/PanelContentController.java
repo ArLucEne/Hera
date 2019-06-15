@@ -23,7 +23,7 @@ public class PanelContentController extends BaseController<PanelContent, PanelCo
     }
 
     @GetMapping("/findAllByPanelId")
-    List<PanelContent> findAllByPanelId(Integer panelId){
+    List<PanelContent> findAllByPanelId(String panelId){
         return super.baseService.findAllByPanelId(panelId);
     }
 }

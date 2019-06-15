@@ -25,7 +25,7 @@ public class PanelController extends BaseController<Panel, PanelService> {
     }
 
     @GetMapping("/findAllByItemCatId")
-    List<Panel> findAllByItemCatId(Long categoryId){
+    List<Panel> findAllByItemCatId(String categoryId){
         return super.baseService.findAllByItemCatId(categoryId);
     }
 }

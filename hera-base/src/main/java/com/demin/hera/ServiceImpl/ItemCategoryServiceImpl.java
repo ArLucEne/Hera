@@ -22,7 +22,7 @@ public class ItemCategoryServiceImpl extends BaseServiceImpl<ItemCategory, ItemC
     }
 
     @Override
-    public List<ItemCategory> findAllByParentId(Long parentId) {
+    public List<ItemCategory> findAllByParentId(String parentId) {
         return super.baseDao.findAllByParentId(parentId);
     }
 

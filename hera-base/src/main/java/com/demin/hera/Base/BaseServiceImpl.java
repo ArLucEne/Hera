@@ -2,6 +2,7 @@ package com.demin.hera.Base;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;

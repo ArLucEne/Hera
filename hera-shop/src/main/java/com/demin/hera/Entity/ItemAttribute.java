@@ -9,14 +9,14 @@ import java.util.Map;
  * on 2019/6/12 9:43;
  */
 public class ItemAttribute {
-    private List<Map<Long,Long>> attributes;
+    private List<Map<String,String>> attributes;
     private BigDecimal price;
 
-    public List<Map<Long, Long>> getAttributes() {
+    public List<Map<String, String>> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<Map<Long, Long>> attributes) {
+    public void setAttributes(List<Map<String, String>> attributes) {
         this.attributes = attributes;
     }
 

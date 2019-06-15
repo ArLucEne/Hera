@@ -26,7 +26,8 @@ import java.util.UUID;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long memberId;
+
+    private String memberId;
 
     private String address;
 

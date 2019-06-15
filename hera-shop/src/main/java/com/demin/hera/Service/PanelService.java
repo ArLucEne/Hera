@@ -42,16 +42,16 @@ public class PanelService {
         return panelResults;
     }
 
-    public List<Panel> getPanelByCateId(Long cateId,Integer itemlimit){
+    public List<Panel> getPanelByCateId(String cateId,Integer itemlimit){
         List<Panel> panels = panelfeign.findAllByItemCatId(cateId);
         for(Panel panel:panels)
             addItemListToPanel(panel,itemlimit);
         return panels;
     }
 
-    public List<Panel> getPanelByCateIds(List<Long> cateIds,Integer itemLimit){
+    public List<Panel> getPanelByCateIds(List<String> cateIds,Integer itemLimit){
         List<Panel> panelList = new LinkedList<>();
-        for(Long cateId:cateIds)
+        for(String cateId:cateIds)
             panelList.addAll(getPanelByCateId(cateId,itemLimit));
         return panelList;
     }
@@ -61,7 +61,7 @@ public class PanelService {
         return addItemListToPanel(panel,10);
     }
 
-    public List<Panel> getPanelsByCateIds(List<Long> cateIds){
+    public List<Panel> getPanelsByCateIds(List<String> cateIds){
         return getPanelByCateIds(cateIds,10);
     }
 

@@ -21,6 +21,6 @@ import java.util.List;
 public interface ItemService extends BaseService<Item> {
     public Item findByName(String name);
 
-    List<Item> findAllByCId(Long cid);
+    List<Item> findAllByCId(String cid);
 
 }

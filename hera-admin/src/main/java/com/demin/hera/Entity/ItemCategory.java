@@ -17,7 +17,8 @@ import java.util.UUID;
 @ToString
 public class ItemCategory implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long itemCatId;
+
+    private String itemCatId;
 
     private LocalDateTime createDate;
 
@@ -29,7 +30,7 @@ public class ItemCategory implements Serializable {
 
     private String name;
 
-    private Long parentId;
+    private String parentId;
 
     private String remark;
 
@@ -38,6 +39,4 @@ public class ItemCategory implements Serializable {
     private Integer state;
 
     private LocalDateTime modifyDate;
-
-
 }

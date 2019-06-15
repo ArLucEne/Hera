@@ -38,5 +38,5 @@ public interface ItemFeign {
     Object findAllWithPage(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize);
 
     @RequestMapping("/item/findAllByCId")
-    List<Item> findAllByCId(@RequestParam("cId")Long categoryId);
+    List<Item> findAllByCId(@RequestParam("cId")String categoryId);
 }
